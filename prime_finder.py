@@ -40,33 +40,53 @@ number_of_batches = 1000
 
 
 ##````````````````````````````````````````````````````````````````````````````````````````````````````````````````##
-#   initialize parameters
+#   initial calculations
 #
-# 
+#   before checking for primes, the probabilies are calculated
+#   and the random values are generated
 
+# odds of random value being prime
 odds_of_prime = 1/number_of_digits
+
+# probability of a thread finding a prime per batch
 probability = (1-(1-odds_of_prime)**(number_of_searches_per_batch_per_thread*number_of_threads)) * 100
+
+# probability of a thread fiding a prime after all batches are complete
 probability_ = (1-(1-odds_of_prime)**(number_of_searches_per_batch_per_thread*number_of_threads*number_of_batches)) * 100 
 
+# show probabilities on screen
 print('(there is a ' + str(round(probability, 2)) + '% chance of finding a prime per batch,', end='')
 print(' ' + str(round(probability_, 2)) + '% chance after all batches)\n\n')
 
+# initialize random value to check for primality
 lower_bound = random.randint(10**number_of_digits, 10**(number_of_digits+1))
 upper_bound = lower_bound + number_of_searches_per_batch_per_thread*number_of_threads
-n_threads = number_of_threads
 
-with open('resources/primes.txt', 'w') as f:
-    f.write('')
-    
-    
-counter = 0
-while counter < number_of_batches:
-    print('\t  == starting batch ' + str(counter+1) + ' ==')
+# check if text file exists, and if not, create it
+if not os.path.exists('resources/primes.txt'):
+    with open('resources/primes.txt', 'w') as f:
+        f.write('')
+
+
+
+##````````````````````````````````````````````````````````````````````````````````````````````````````````````````##
+#   main loop
+#
+#   batches are run to check for primality
+#   any primes that are found are appended to
+#   'resources/primes.txt'
+
+# initialize batch at zero
+batch = 0
+
+# iterate through the number of batches
+while batch < number_of_batches:
+    print('\t  == starting batch ' + str(batch+1) + ' ==')
     print('   checking ' + str(number_of_searches_per_batch_per_thread) 
             + ' candidates per thread\n\n')
 
     t_to_start = time.monotonic()
-    primes = pc.findPrimes(int(lower_bound), int(upper_bound), int(n_threads))
+    primes = pc.findPrimes(int(lower_bound), int(upper_bound), int(number_of_threads))
     t_to_end = time.monotonic()
     
     for p in primes:
@@ -82,7 +102,7 @@ while counter < number_of_batches:
 
     lower_bound += number_of_searches_per_batch_per_thread*number_of_threads
     upper_bound += number_of_searches_per_batch_per_thread*number_of_threads
-    counter += 1
+    batch += 1
 
 
 with open('resources/primes.txt') as f:
