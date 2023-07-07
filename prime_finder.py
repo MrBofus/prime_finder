@@ -81,39 +81,62 @@ batch = 0
 
 # iterate through the number of batches
 while batch < number_of_batches:
+    # print batch number and number of searches per thread
     print('\t  == starting batch ' + str(batch+1) + ' ==')
     print('   checking ' + str(number_of_searches_per_batch_per_thread) 
             + ' candidates per thread\n\n')
 
+    # begin timer
     t_to_start = time.monotonic()
+
+    # search for primes using all threads
     primes = pc.findPrimes(int(lower_bound), int(upper_bound), int(number_of_threads))
+
+    # end timer
     t_to_end = time.monotonic()
     
+    # any primes found in search is appended to prime list in 'resources' folder
     for p in primes:
         with open('resources/primes.txt', 'a') as f:
             f.write(str(p) + ' is prime\n\n')
     
+    # align text to screen
     if len(primes) == 1: plural = ''
     else: plural = 's'
     
+    # print wrap-up information at end of batch
     print('\t(' + str(len(primes)) + 
             ' prime' + plural + ' found this batch)') # \n\n\n\n')
     print('\t(' + str(t_to_end - t_to_start) + 's per batch)\n\n\n\n')
 
+    # move window to check over
     lower_bound += number_of_searches_per_batch_per_thread*number_of_threads
     upper_bound += number_of_searches_per_batch_per_thread*number_of_threads
+
+    # incriment batch
     batch += 1
 
 
+
+##````````````````````````````````````````````````````````````````````````````````````````````````````````````````##
+#   post-processing
+#
+#   check any primes found for potential
+#   twin or triplet primes
+
+# read saved list of primes
 with open('resources/primes.txt') as f:
     lines = f.readlines()
 
+# split strings into list of primes
 primelist = []
 for i in range(0, len(lines), 2): 
     primelist.append(int(lines[i].split(' ')[0]))
 
+# iterate through each prime stored in the list of primes
 pcounter = 0
 for i in range(1, len(primelist)):
+    # if there is a twin prime, append it to the twin primes text file
     if primelist[i] - primelist[i-1] == 2:
         
         print('twin prime found')
@@ -126,6 +149,7 @@ for i in range(1, len(primelist)):
     
     
     if pcounter > 0:
+        # if there is a triplet prime, append it to the twin primes text file
         if ((primelist[i] - primelist[i-1] == 4 and 
                 primelist[i] - primelist[i-2] == 6) or 
                 (primelist[i] - primelist[i-1] == 2 and 
@@ -141,4 +165,5 @@ for i in range(1, len(primelist)):
     
     pcounter += 1
 
-    _ = input()
+# keep window open when code finishes running
+_ = input()
