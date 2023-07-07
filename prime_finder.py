@@ -26,7 +26,7 @@ if not os.path.exists('resources/'):
     os.mkdir('resources/')
 
 # specify the number of digits of prime number to search for
-number_of_digits =  100
+number_of_digits =  5
 
 # specify the number of threads to use to concurrently search for primes
 number_of_threads = 40
@@ -39,7 +39,7 @@ number_of_batches = 10
 
 
 
-mode = 'random'
+mode = 'mersenne'
 
 
 
@@ -63,7 +63,7 @@ print('(there is a ' + str(round(probability, 2)) + '% chance of finding a prime
 print(' ' + str(round(probability_, 2)) + '% chance after all batches)\n\n')
 
 # initialize random value to check for primality
-lower_bound = random.randint(10**number_of_digits, 10**(number_of_digits+1))
+lower_bound = random.randint(10**(number_of_digits-1), 10**number_of_digits)
 upper_bound = lower_bound + number_of_searches_per_batch_per_thread*number_of_threads
 
 # check if text file exists, and if not, create it
