@@ -1,9 +1,27 @@
+##````````````````````````````````````````````````````````````````````````````````````````````````````````````````##
+#   written by ME :)
+#
+
+##````````````````````````````````````````````````````````````````````````````````````````````````````````````````##
+#   import libraries
+#       lib.prime_core  -   contains parallelized prime-finding algorithm
+#       random          -   generates random numbers to check for primality
+#       time            -   used for metrics to see how long iterations take
+#       os              -   creates 'resources' folder if one does not currently exists
+
 import lib.prime_core as pc
 import random
 import time
 import os
 
 
+##````````````````````````````````````````````````````````````````````````````````````````````````````````````````##
+#   initialize parameters
+#
+#   
+
+# check if 'resources' folder exists, and if it
+# does not, make one
 if not os.path.exists('resources/'):
     os.mkdir('resources/')
 
