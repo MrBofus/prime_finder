@@ -49,18 +49,19 @@ mode = 'mersenne'
 #   before checking for primes, the probabilies are calculated
 #   and the random values are generated
 
-# odds of random value being prime
-odds_of_prime = 1/number_of_digits
+if mode == 'random':
+    # odds of random value being prime
+    odds_of_prime = 1/number_of_digits
 
-# probability of a thread finding a prime per batch
-probability = (1-(1-odds_of_prime)**(number_of_searches_per_batch_per_thread*number_of_threads)) * 100
+    # probability of a thread finding a prime per batch
+    probability = (1-(1-odds_of_prime)**(number_of_searches_per_batch_per_thread*number_of_threads)) * 100
 
-# probability of a thread fiding a prime after all batches are complete
-probability_ = (1-(1-odds_of_prime)**(number_of_searches_per_batch_per_thread*number_of_threads*number_of_batches)) * 100 
+    # probability of a thread fiding a prime after all batches are complete
+    probability_ = (1-(1-odds_of_prime)**(number_of_searches_per_batch_per_thread*number_of_threads*number_of_batches)) * 100 
 
-# show probabilities on screen
-print('(there is a ' + str(round(probability, 2)) + '% chance of finding a prime per batch,', end='')
-print(' ' + str(round(probability_, 2)) + '% chance after all batches)\n\n')
+    # show probabilities on screen
+    print('(there is a ' + str(round(probability, 2)) + '% chance of finding a prime per batch,', end='')
+    print(' ' + str(round(probability_, 2)) + '% chance after all batches)\n\n')
 
 # initialize random value to check for primality
 lower_bound = random.randint(10**(number_of_digits-1), 10**number_of_digits)
@@ -76,6 +77,10 @@ else:
         with open('resources/primes.txt') as f:
             lines = f.readlines()
 
+        if len(lines) == 0:
+            print('no prime list!')
+            exit()
+            
         # split strings into list of primes
         mpowers = []
         for i in range(0, len(lines), 2): 
@@ -108,7 +113,10 @@ while batch < number_of_batches:
 
     # search for mersenne primes using all threads
     elif mode == 'mersenne':
-        primes = pc.findMersennePrimes(mpowers, int(number_of_threads))
+        lower_fraction = int( (batch/number_of_batches) * len(mpowers) )
+        upper_fraction = int( ((batch+1)/number_of_batches) * len(mpowers) )
+
+        primes = pc.findMersennePrimes(mpowers[lower_fraction:upper_fraction], int(number_of_threads))
 
     # end timer
     t_to_end = time.monotonic()
