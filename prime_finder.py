@@ -4,8 +4,6 @@ import time
 import os
 
 
-
-
 if not os.path.exists('resources/'):
     os.mkdir('resources/')
 
@@ -41,7 +39,7 @@ while counter < number_of_batches:
             + ' candidates per thread\n\n')
 
     t_to_start = time.monotonic()
-    primes = findPrimes(int(lower_bound), int(upper_bound), int(n_threads))
+    primes = pc.findPrimes(int(lower_bound), int(upper_bound), int(n_threads))
     t_to_end = time.monotonic()
     
     for p in primes:
@@ -54,7 +52,6 @@ while counter < number_of_batches:
     print('\t(' + str(len(primes)) + 
             ' prime' + plural + ' found this batch)') # \n\n\n\n')
     print('\t(' + str(t_to_end - t_to_start) + 's per batch)\n\n\n\n')
-    # print('\n\t== batch ' + str(counter+1) + ' complete== \n\n\n\n')
 
     lower_bound += number_of_searches_per_batch_per_thread*number_of_threads
     upper_bound += number_of_searches_per_batch_per_thread*number_of_threads
