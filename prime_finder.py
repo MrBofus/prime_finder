@@ -26,7 +26,7 @@ if not os.path.exists('resources/'):
     os.mkdir('resources/')
 
 # specify the number of digits of prime number to search for
-number_of_digits =  100000
+number_of_digits =  100
 
 # specify the number of threads to use to concurrently search for primes
 number_of_threads = 40
@@ -36,6 +36,10 @@ number_of_searches_per_batch_per_thread = 5
 
 # specify number of checks each thread completes
 number_of_batches = 1000
+
+
+
+mode = 'random'
 
 
 
@@ -66,7 +70,16 @@ upper_bound = lower_bound + number_of_searches_per_batch_per_thread*number_of_th
 if not os.path.exists('resources/primes.txt'):
     with open('resources/primes.txt', 'w') as f:
         f.write('')
+else:
+    if mode == 'mersenne':
+        # read saved list of primes
+        with open('resources/primes.txt') as f:
+            lines = f.readlines()
 
+        # split strings into list of primes
+        mpowers = []
+        for i in range(0, len(lines), 2): 
+            mpowers.append(int(lines[i].split(' ')[0]))
 
 
 ##````````````````````````````````````````````````````````````````````````````````````````````````````````````````##
@@ -89,8 +102,13 @@ while batch < number_of_batches:
     # begin timer
     t_to_start = time.monotonic()
 
-    # search for primes using all threads
-    primes = pc.findPrimes(int(lower_bound), int(upper_bound), int(number_of_threads))
+    # search for random primes using all threads
+    if mode == 'random':
+        primes = pc.findPrimes(int(lower_bound), int(upper_bound), int(number_of_threads))
+
+    # search for mersenne primes using all threads
+    elif mode == 'mersenne':
+        primes = pc.findMersennePrimes(mpowers, int(number_of_threads))
 
     # end timer
     t_to_end = time.monotonic()
