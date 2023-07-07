@@ -51,6 +51,7 @@ def is_Prime(j, n, n_trials):
     
     return True
 
+
 def findPrimes(lower_bound, upper_bound, number_of_threads):
 
     q = queue.Queue()
@@ -59,7 +60,7 @@ def findPrimes(lower_bound, upper_bound, number_of_threads):
     
     threads = [None]*number_of_threads
     for t in range(number_of_threads):
-        threads[t] = CustomThread(t, ranges[t], q)
+        threads[t] = CustomThread(t, ranges[t], q, 'default')
         threads[t].start()
         # print('\t   starting thread #' + str(t))
     
@@ -77,10 +78,29 @@ def findPrimes(lower_bound, upper_bound, number_of_threads):
     return primes
 
 
+def findMersennePrimes(prime_candidates, number_of_threads):
+
+    threads = [None]*number_of_threads
+    for t in range(number_of_threads):
+        lower_fraction = int( (t/number_of_threads) * len(prime_candidates) )
+        upper_fraction = int( ((t+1)/number_of_threads) * len(prime_candidates) )
+
+        threads[t] = CustomThread(t, [0, 1], prime_candidates[lower_fraction:upper_fraction], 'mersenne')
+        threads[t].start()
+
+    for t in range(number_of_threads):
+        threads[t].join()
+    
+    primes = []
+    for T in threads:
+        for i in range(len(T.primelist)):
+            primes.append(T.primelist[i])
+    
+    return primes
 
 
 class CustomThread(Thread):
-    def __init__(self, i, r, queue):
+    def __init__(self, i, r, queue, mode):
         
         Thread.__init__(self)
         self.n = r[0]
@@ -88,33 +108,42 @@ class CustomThread(Thread):
         self.i = i
 
         self.queue = queue
+        self.mode = mode
         
         self.primelist = []
         
     def run(self):
-        
-        # counter = 0
-        for i in range(self.n, self.m):
 
-            # sys.stdout.write('\r')
-            # percentage = int( 100*counter / (self.m - self.n))
-            # sys.stdout.write("    thread #1: %d%%" % (percentage))
-            # sys.stdout.flush()
+        if self.mode == 'default':
+            for i in range(self.n, self.m):
 
-            # counter += 1
+                if is_Prime(self.i, i, 8):
+                    self.primelist.append(i)
+            
+            if len(self.primelist) == 1: plural = ''
+            else: plural = 's'
+            
+            if self.i < 9: extraspace = ' ' 
+            else: extraspace = ''
+            
+            
+            print('   thread #' + str(self.i+1) + ' finished; ' + extraspace + 'found ' 
+                + str(len(self.primelist)) + ' prime' + plural)
+        
+        elif self.mode == 'mersenne':
+            for i in range(len(self.queue)):
+                
+                candidate = 2**self.queue[i] + 1
 
-            if is_Prime(self.i, i, 8):
-                self.primelist.append(i)
-        
-        # sys.stdout.flush()
-        # sys.stdout.write('\r')
-
-        if len(self.primelist) == 1: plural = ''
-        else: plural = 's'
-        
-        if self.i < 9: extraspace = ' ' 
-        else: extraspace = ''
-        
-        
-        print('   thread #' + str(self.i+1) + ' finished; ' + extraspace + 'found ' 
-            + str(len(self.primelist)) + ' prime' + plural)
+                if is_Prime(self.i, candidate, 8):
+                    self.primelist.append(candidate)
+            
+            if len(self.primelist) == 1: plural = ''
+            else: plural = 's'
+            
+            if self.i < 9: extraspace = ' ' 
+            else: extraspace = ''
+            
+            
+            print('   thread #' + str(self.i+1) + ' finished; ' + extraspace + 'found ' 
+                + str(len(self.primelist)) + ' prime' + plural)
