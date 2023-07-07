@@ -25,19 +25,28 @@ import os
 if not os.path.exists('resources/'):
     os.mkdir('resources/')
 
-
-
+# specify the number of digits of prime number to search for
 number_of_digits =  100000
+
+# specify the number of threads to use to concurrently search for primes
 number_of_threads = 40
-number_of_batches = 1000
+
+# specify number of candidates to check per thread
 number_of_searches_per_batch_per_thread = 5
+
+# specify number of checks each thread completes
+number_of_batches = 1000
+
+
+
+##````````````````````````````````````````````````````````````````````````````````````````````````````````````````##
+#   initialize parameters
+#
+# 
 
 odds_of_prime = 1/number_of_digits
 probability = (1-(1-odds_of_prime)**(number_of_searches_per_batch_per_thread*number_of_threads)) * 100
 probability_ = (1-(1-odds_of_prime)**(number_of_searches_per_batch_per_thread*number_of_threads*number_of_batches)) * 100 
-
-
-
 
 print('(there is a ' + str(round(probability, 2)) + '% chance of finding a prime per batch,', end='')
 print(' ' + str(round(probability_, 2)) + '% chance after all batches)\n\n')
