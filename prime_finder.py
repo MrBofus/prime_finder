@@ -26,7 +26,7 @@ if not os.path.exists('resources/'):
     os.mkdir('resources/')
 
 # specify the number of digits of prime number to search for
-number_of_digits =  5
+number_of_digits =  3
 
 # specify the number of threads to use to concurrently search for primes
 number_of_threads = 40
