@@ -1,6 +1,6 @@
 from threading import Thread
 import random
-from helper_functions import *
+from lib.helper_functions import *
 import queue
 
 

@@ -35,7 +35,7 @@ number_of_threads = 40
 number_of_searches_per_batch_per_thread = 5
 
 # specify number of checks each thread completes
-number_of_batches = 1000
+number_of_batches = 10
 
 
 
@@ -125,7 +125,7 @@ while batch < number_of_batches:
     # print wrap-up information at end of batch
     print('\t(' + str(len(primes)) + 
             ' prime' + plural + ' found this batch)') # \n\n\n\n')
-    print('\t(' + str(t_to_end - t_to_start) + 's per batch)\n\n\n\n')
+    print('\t     (' + str(round(t_to_end - t_to_start, 1)) + 's per batch)\n\n\n\n')
 
     # move window to check over
     lower_bound += number_of_searches_per_batch_per_thread*number_of_threads
