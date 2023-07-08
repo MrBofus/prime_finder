@@ -2,6 +2,7 @@ from threading import Thread
 import random
 from lib.helper_functions import *
 import queue
+import sys
 
 
 def trial_composite(j, a, d, n, s):
@@ -20,15 +21,19 @@ def trial_composite(j, a, d, n, s):
     return True
 
 
-def LucasLehmer(c):
+def LucasLehmer(c, v):
     x = 2**c - 1
     p = c - 1
 
     s = 4 % x
     for i in range(1, p):
-        # if i%1000 == 0: print( str(int(100*i/p)) + '% complete' )
+        if v:
+            if i%100 == 0:
+                sys.stdout.write("\rvalidating primality...\t%d%% complete" % int(100*i/p))
+                sys.stdout.flush()
+
         s = (s**2 - 2) % x
-    
+
     if s== 0:
         return x
     
@@ -149,7 +154,7 @@ class CustomThread(Thread):
         elif self.mode == 'mersenne':
             if len(self.queue) > 0:
                 for i in range(len(self.queue)):
-                    v_ = LucasLehmer(self.queue[i])
+                    v_ = LucasLehmer(self.queue[i], False)
 
                     if not v_ == -1:
                         self.primelist.append(v_)
