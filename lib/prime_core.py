@@ -121,14 +121,14 @@ def findMersennePrimes(prime_candidates, number_of_threads):
 
 
 class CustomThread(Thread):
-    def __init__(self, i, r, list, mode):
+    def __init__(self, i, r, l, mode):
         
         Thread.__init__(self)
         self.n = r[0]
         self.m = r[1]
         self.i = i
 
-        self.list = list
+        self.list = l
         self.mode = mode
         
         self.primelist = []
