@@ -5,7 +5,7 @@ import queue
 
 
 def trial_composite(j, a, d, n, s):
-    # print_green('checking null case')
+    # print_green('     (node: ' + str(j+1) + ' -- checking null case)')
     if pow(a, d, n) == 1:
         return False
     
@@ -18,6 +18,21 @@ def trial_composite(j, a, d, n, s):
             return False
     
     return True
+
+
+def LucasLehmer(c):
+    x = 2**c - 1
+    p = c - 1
+
+    s = 4 % x
+    for i in range(1, p):
+        s = (s**2 - 2) % x
+    
+    if s == 0:
+        return x
+    
+    else:
+        return -1
 
 
 
@@ -131,19 +146,20 @@ class CustomThread(Thread):
                 + str(len(self.primelist)) + ' prime' + plural)
         
         elif self.mode == 'mersenne':
-            for i in range(len(self.queue)):
-                
-                candidate = 2**self.queue[i] + 1
+            if len(self.queue) > 0:
+                for i in range(len(self.queue)):
+                    v_ = LucasLehmer(self.queue[i])
 
-                if is_Prime(self.i, candidate, 8):
-                    self.primelist.append(candidate)
-            
+                    if not v_ == -1:
+                        self.primelist.append(v_)
+                
             if len(self.primelist) == 1: plural = ''
             else: plural = 's'
             
             if self.i < 9: extraspace = ' ' 
             else: extraspace = ''
             
-            
-            print('   thread #' + str(self.i+1) + ' finished; ' + extraspace + 'found ' 
-                + str(len(self.primelist)) + ' prime' + plural)
+            if len(self.primelist):
+                print('   thread #' + str(self.i+1) + ' finished; ' + extraspace + 'candidate was prime')
+            else:
+                print('   thread #' + str(self.i+1) + ' finished; ' + extraspace + 'candidate was not prime')

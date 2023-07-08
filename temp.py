@@ -2,12 +2,12 @@ import math
 import lib.prime_core as pc
 import time
 
-candidate = 2**(1109) + 1
+candidate = 2**(52009) - 1
 
-print(math.log10( candidate ))
+print(int(math.log10( candidate ) + 1))
 
 t_to_start = time.monotonic()
-print(pc.is_Prime(0, candidate, 8))
+print(pc.LucasLehmer(52009))
 t_to_end = time.monotonic()
 
 print(t_to_end - t_to_start)
