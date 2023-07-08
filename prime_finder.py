@@ -190,7 +190,7 @@ number_of_searches_per_batch_per_thread = 5
 # specify number of checks each thread completes
 number_of_batches = 10
 
-lower, upper = 5*10**4, 6*10**4
+lower, upper = 2*10**4, 3*10**4
 
 mode = 'bounded mersenne'
 

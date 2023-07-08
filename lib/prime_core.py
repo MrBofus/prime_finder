@@ -28,7 +28,7 @@ def LucasLehmer(j, c, v):
     s = 4 % x
     for i in range(1, p):
         if v:
-            if i%5 == 0:
+            if i%15 == 0:
                 # sys.stdout.write("\rthread " + str(j) + "  --  validating primality...\t" + str(int(100*i/p)) + "% complete (" + str(i) + "/" + str(p) + ")")
                 sys.stdout.write("\rvalidating primality...\t" + str(int(100*i/p)) + "% complete (" + str(i) + "/" + str(p) + ")")
                 sys.stdout.flush()
