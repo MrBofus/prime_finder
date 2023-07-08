@@ -123,7 +123,45 @@ def mersenne_search(number_of_batches, number_of_digits, number_of_searches_per_
     print('\t     (' + str(round(t_to_end - t_to_start, 1)) + 's total)\n\n\n\n')
     print('  largest prime found was ' + str(int(new_max)) + ' digits\n\n\n\n')
 
-        
+
+def bounded_mersenne_search(lower, upper):
+    trials = 100
+    tcount = 0
+    while tcount < trials:
+        print('\n\n\n`````````````````````````````````````````````````````')
+        print('finding new candidate...')
+        while True:
+            mpower = random.randint(lower, upper)
+
+            _ = pc.is_Prime(0, mpower, 8)
+
+            if _:
+                break
+
+        print('\npower is ' + str(int(math.log10( mpower ) + 1)) + ' digits (' + str(mpower) + ')')
+
+        candidate = 2**(mpower) - 1
+
+        print('candidate is ' + str(int(math.log10( candidate ) + 1)) + ' digits')
+
+        print('probability of being prime: ' + str(round(100*math.log10(mpower)/mpower, 5)) + '%\n\n')
+
+        t_to_start = time.monotonic()
+        p = pc.LucasLehmer(1, mpower, True)
+
+        t_to_end = time.monotonic()
+
+        print('\n\n\n')
+        print('time: ' + str(round(t_to_end - t_to_start, 2)) + 's\n\n')
+
+        if p == -1:
+            print('candidate is not prime')
+        else:
+            print('candidate is prime')
+            with open('resources/mersenne_primes.txt', 'a') as f:
+                f.write(str(p) + ' is prime\n\n')
+
+        tcount += 1
 
 
 
@@ -151,9 +189,9 @@ number_of_searches_per_batch_per_thread = 5
 # specify number of checks each thread completes
 number_of_batches = 10
 
+lower, upper = 5*10**4, 6*10**4
 
-
-mode = 'mersenne'
+mode = 'bounded mersenne'
 
 
 
@@ -193,8 +231,9 @@ if not os.path.exists('resources/primes.txt'):
 #   'resources/primes.txt'
 
 
-if mode == 'random':        random_search(number_of_batches, number_of_digits, number_of_searches_per_batch_per_thread, number_of_threads)
-elif mode == 'mersenne':    mersenne_search(number_of_batches, number_of_digits, number_of_searches_per_batch_per_thread, number_of_threads)
+if mode == 'random':                random_search(number_of_batches, number_of_digits, number_of_searches_per_batch_per_thread, number_of_threads)
+elif mode == 'mersenne':            mersenne_search(number_of_batches, number_of_digits, number_of_searches_per_batch_per_thread, number_of_threads)
+elif mode == 'bounded mersenne':    bounded_mersenne_search(lower, upper)
 
 
 
