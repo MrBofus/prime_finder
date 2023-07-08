@@ -21,15 +21,15 @@ def trial_composite(j, a, d, n, s):
     return True
 
 
-def LucasLehmer(c, v):
+def LucasLehmer(j, c, v):
     x = 2**c - 1
     p = c - 1
 
     s = 4 % x
     for i in range(1, p):
         if v:
-            if i%100 == 0:
-                sys.stdout.write("\rvalidating primality...\t%d%% complete" % int(100*i/p))
+            if i%5 == 0:
+                sys.stdout.write("\rthread " + str(j) + "  --  validating primality...\t" + str(int(100*i/p)) + "% complete (" + str(i) + "/" + str(p) + ")")
                 sys.stdout.flush()
 
         s = (s**2 - 2) % x
@@ -154,7 +154,7 @@ class CustomThread(Thread):
         elif self.mode == 'mersenne':
             if len(self.list) > 0:
                 for i in range(len(self.list)):
-                    v_ = LucasLehmer(self.list[i], False)
+                    v_ = LucasLehmer(self.i, self.list[i], False)
 
                     if not v_ == -1:
                         self.primelist.append(v_)

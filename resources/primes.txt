@@ -1,354 +1,422 @@
-92551 is prime
+10061 is prime
 
-92557 is prime
+10067 is prime
 
-92567 is prime
+10069 is prime
 
-92569 is prime
+10079 is prime
 
-92581 is prime
+10091 is prime
 
-92593 is prime
+10093 is prime
 
-92623 is prime
+10099 is prime
 
-92627 is prime
+10103 is prime
 
-92639 is prime
+10111 is prime
 
-92641 is prime
+10133 is prime
 
-92647 is prime
+10139 is prime
 
-92657 is prime
+10141 is prime
 
-92669 is prime
+10151 is prime
 
-92671 is prime
+10159 is prime
 
-92681 is prime
+10163 is prime
 
-92683 is prime
+10169 is prime
 
-92693 is prime
+10177 is prime
 
-92699 is prime
+10181 is prime
 
-92707 is prime
+10193 is prime
 
-92717 is prime
+10211 is prime
 
-92723 is prime
+10223 is prime
 
-92737 is prime
+10243 is prime
 
-92753 is prime
+10247 is prime
 
-92761 is prime
+10253 is prime
 
-92767 is prime
+10259 is prime
 
-92779 is prime
+10267 is prime
 
-92789 is prime
+10271 is prime
 
-92791 is prime
+10273 is prime
 
-92801 is prime
+10289 is prime
 
-92809 is prime
+10301 is prime
 
-92821 is prime
+10303 is prime
 
-92831 is prime
+10313 is prime
 
-92849 is prime
+10321 is prime
 
-92857 is prime
+10331 is prime
 
-92861 is prime
+10333 is prime
 
-92863 is prime
+10337 is prime
 
-92867 is prime
+10343 is prime
 
-92893 is prime
+10357 is prime
 
-92899 is prime
+10369 is prime
 
-92921 is prime
+10391 is prime
 
-92927 is prime
+10399 is prime
 
-92941 is prime
+10427 is prime
 
-92951 is prime
+10429 is prime
 
-92957 is prime
+10433 is prime
 
-92959 is prime
+10453 is prime
 
-92987 is prime
+10457 is prime
 
-92993 is prime
+10459 is prime
 
-93001 is prime
+10463 is prime
 
-93047 is prime
+10477 is prime
 
-93053 is prime
+10487 is prime
 
-93059 is prime
+10499 is prime
 
-93077 is prime
+10501 is prime
 
-93083 is prime
+10513 is prime
 
-93089 is prime
+10529 is prime
 
-93097 is prime
+10531 is prime
 
-93103 is prime
+10559 is prime
 
-93113 is prime
+10567 is prime
 
-93131 is prime
+10589 is prime
 
-93133 is prime
+10597 is prime
 
-93139 is prime
+10601 is prime
 
-93151 is prime
+10607 is prime
 
-93169 is prime
+10613 is prime
 
-93179 is prime
+10627 is prime
 
-93187 is prime
+10631 is prime
 
-93199 is prime
+10639 is prime
 
-93229 is prime
+10651 is prime
 
-93239 is prime
+10657 is prime
 
-93241 is prime
+10663 is prime
 
-93251 is prime
+10667 is prime
 
-93253 is prime
+10687 is prime
 
-93257 is prime
+10691 is prime
 
-93263 is prime
+10709 is prime
 
-93281 is prime
+10711 is prime
 
-93283 is prime
+10723 is prime
 
-93287 is prime
+10729 is prime
 
-93307 is prime
+10733 is prime
 
-93319 is prime
+10739 is prime
 
-93323 is prime
+10753 is prime
 
-93329 is prime
+10771 is prime
 
-93337 is prime
+10781 is prime
 
-93371 is prime
+10789 is prime
 
-93377 is prime
+10799 is prime
 
-93383 is prime
+10831 is prime
 
-93407 is prime
+10837 is prime
 
-93419 is prime
+10847 is prime
 
-93427 is prime
+10853 is prime
 
-93463 is prime
+10859 is prime
 
-93479 is prime
+10861 is prime
 
-93481 is prime
+10867 is prime
 
-93487 is prime
+10883 is prime
 
-93491 is prime
+10889 is prime
 
-93493 is prime
+10891 is prime
 
-93497 is prime
+10903 is prime
 
-93503 is prime
+10909 is prime
 
-93523 is prime
+10937 is prime
 
-93529 is prime
+10939 is prime
 
-93553 is prime
+10949 is prime
 
-93557 is prime
+10957 is prime
 
-93559 is prime
+10973 is prime
 
-93563 is prime
+10979 is prime
 
-93581 is prime
+10987 is prime
 
-93601 is prime
+10993 is prime
 
-93607 is prime
+11003 is prime
 
-93629 is prime
+11027 is prime
 
-93637 is prime
+11047 is prime
 
-93683 is prime
+11057 is prime
 
-93701 is prime
+11059 is prime
 
-93703 is prime
+11069 is prime
 
-93719 is prime
+11071 is prime
 
-93739 is prime
+11083 is prime
 
-93761 is prime
+11087 is prime
 
-93763 is prime
+11093 is prime
 
-93787 is prime
+11113 is prime
 
-93809 is prime
+11117 is prime
 
-93811 is prime
+11119 is prime
 
-93827 is prime
+11131 is prime
 
-93851 is prime
+11149 is prime
 
-93871 is prime
+11159 is prime
 
-93887 is prime
+11161 is prime
 
-93889 is prime
+11171 is prime
 
-93893 is prime
+11173 is prime
 
-93901 is prime
+11177 is prime
 
-93911 is prime
+11197 is prime
 
-93913 is prime
+11213 is prime
 
-93923 is prime
+11239 is prime
 
-93937 is prime
+11243 is prime
 
-93941 is prime
+11251 is prime
 
-93949 is prime
+11257 is prime
 
-93967 is prime
+11261 is prime
 
-93971 is prime
+11273 is prime
 
-93979 is prime
+11279 is prime
 
-93983 is prime
+11287 is prime
 
-93997 is prime
+11299 is prime
 
-94007 is prime
+11311 is prime
 
-94009 is prime
+11317 is prime
 
-94033 is prime
+11321 is prime
 
-94049 is prime
+11329 is prime
 
-94057 is prime
+11351 is prime
 
-94063 is prime
+11353 is prime
 
-94079 is prime
+11369 is prime
 
-94099 is prime
+11383 is prime
 
-94109 is prime
+11393 is prime
 
-94111 is prime
+11399 is prime
 
-94117 is prime
+11411 is prime
 
-94121 is prime
+11423 is prime
 
-94151 is prime
+11437 is prime
 
-94153 is prime
+11443 is prime
 
-94169 is prime
+11447 is prime
 
-94201 is prime
+11467 is prime
 
-94207 is prime
+11471 is prime
 
-94219 is prime
+11483 is prime
 
-94229 is prime
+11489 is prime
 
-94253 is prime
+11491 is prime
 
-94261 is prime
+11497 is prime
 
-94273 is prime
+11503 is prime
 
-94291 is prime
+11519 is prime
 
-94307 is prime
+11527 is prime
 
-94309 is prime
+11549 is prime
 
-94321 is prime
+11551 is prime
 
-94327 is prime
+11579 is prime
 
-94331 is prime
+11587 is prime
 
-94343 is prime
+11593 is prime
 
-94349 is prime
+11597 is prime
 
-94351 is prime
+11617 is prime
 
-94379 is prime
+11621 is prime
 
-94397 is prime
+11633 is prime
 
-94399 is prime
+11657 is prime
 
-94421 is prime
+11677 is prime
 
-94427 is prime
+11681 is prime
 
-94433 is prime
+11689 is prime
 
-94439 is prime
+11699 is prime
 
-94441 is prime
+11701 is prime
 
-94447 is prime
+11717 is prime
 
-94463 is prime
+11719 is prime
 
-94477 is prime
+11731 is prime
 
-94483 is prime
+11743 is prime
 
-94513 is prime
+11777 is prime
+
+11779 is prime
+
+11783 is prime
+
+11789 is prime
+
+11801 is prime
+
+11807 is prime
+
+11813 is prime
+
+11821 is prime
+
+11827 is prime
+
+11831 is prime
+
+11833 is prime
+
+11839 is prime
+
+11863 is prime
+
+11867 is prime
+
+11887 is prime
+
+11897 is prime
+
+11903 is prime
+
+11909 is prime
+
+11923 is prime
+
+11927 is prime
+
+11933 is prime
+
+11939 is prime
+
+11941 is prime
+
+11953 is prime
+
+11959 is prime
+
+11969 is prime
+
+11971 is prime
+
+11981 is prime
+
+11987 is prime
+
+12007 is prime
+
+12011 is prime
+
+12037 is prime
+
+12041 is prime
+
+12043 is prime
+
+12049 is prime
 
