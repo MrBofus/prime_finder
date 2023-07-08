@@ -125,18 +125,22 @@ def mersenne_search(number_of_batches, number_of_digits, number_of_searches_per_
 
 
 def bounded_mersenne_search(lower, upper):
-    trials = 100
+    trials = 10**5
     tcount = 0
+
+    mpower = lower
     while tcount < trials:
         print('\n\n\n`````````````````````````````````````````````````````')
         print('finding new candidate...')
+
         while True:
-            mpower = random.randint(lower, upper)
 
             _ = pc.is_Prime(0, mpower, 8)
 
             if _:
                 break
+
+            mpower += 1
 
         print('\npower is ' + str(int(math.log10( mpower ) + 1)) + ' digits (' + str(mpower) + ')')
 
@@ -163,6 +167,10 @@ def bounded_mersenne_search(lower, upper):
                 f.write(str(p) + ' is prime\n\n')
 
         tcount += 1
+        mpower += 1
+
+        if mpower > upper:
+            break
 
 
 
@@ -190,7 +198,7 @@ number_of_searches_per_batch_per_thread = 5
 # specify number of checks each thread completes
 number_of_batches = 10
 
-lower, upper = 2*10**4, 3*10**4
+lower, upper = 1*10**4, 2*10**4
 
 mode = 'bounded mersenne'
 
