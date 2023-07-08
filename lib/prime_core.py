@@ -26,9 +26,10 @@ def LucasLehmer(c):
 
     s = 4 % x
     for i in range(1, p):
+        # if i%1000 == 0: print( str(int(100*i/p)) + '% complete' )
         s = (s**2 - 2) % x
     
-    if s == 0:
+    if s== 0:
         return x
     
     else:

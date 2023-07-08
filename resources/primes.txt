@@ -1,362 +1,354 @@
-52009 is prime
+92551 is prime
 
-52021 is prime
+92557 is prime
 
-52027 is prime
+92567 is prime
 
-52051 is prime
+92569 is prime
 
-52057 is prime
+92581 is prime
 
-52067 is prime
+92593 is prime
 
-52069 is prime
+92623 is prime
 
-52081 is prime
+92627 is prime
 
-52103 is prime
+92639 is prime
 
-52121 is prime
+92641 is prime
 
-52127 is prime
+92647 is prime
 
-52147 is prime
+92657 is prime
 
-52153 is prime
+92669 is prime
 
-52163 is prime
+92671 is prime
 
-52177 is prime
+92681 is prime
 
-52181 is prime
+92683 is prime
 
-52183 is prime
+92693 is prime
 
-52189 is prime
+92699 is prime
 
-52201 is prime
+92707 is prime
 
-52223 is prime
+92717 is prime
 
-52237 is prime
+92723 is prime
 
-52249 is prime
+92737 is prime
 
-52253 is prime
+92753 is prime
 
-52259 is prime
+92761 is prime
 
-52267 is prime
+92767 is prime
 
-52289 is prime
+92779 is prime
 
-52291 is prime
+92789 is prime
 
-52301 is prime
+92791 is prime
 
-52313 is prime
+92801 is prime
 
-52321 is prime
+92809 is prime
 
-52361 is prime
+92821 is prime
 
-52363 is prime
+92831 is prime
 
-52369 is prime
+92849 is prime
 
-52379 is prime
+92857 is prime
 
-52387 is prime
+92861 is prime
 
-52391 is prime
+92863 is prime
 
-52433 is prime
+92867 is prime
 
-52453 is prime
+92893 is prime
 
-52457 is prime
+92899 is prime
 
-52489 is prime
+92921 is prime
 
-52501 is prime
+92927 is prime
 
-52511 is prime
+92941 is prime
 
-52517 is prime
+92951 is prime
 
-52529 is prime
+92957 is prime
 
-52541 is prime
+92959 is prime
 
-52543 is prime
+92987 is prime
 
-52553 is prime
+92993 is prime
 
-52561 is prime
+93001 is prime
 
-52567 is prime
+93047 is prime
 
-52571 is prime
+93053 is prime
 
-52579 is prime
+93059 is prime
 
-52583 is prime
+93077 is prime
 
-52609 is prime
+93083 is prime
 
-52627 is prime
+93089 is prime
 
-52631 is prime
+93097 is prime
 
-52639 is prime
+93103 is prime
 
-52667 is prime
+93113 is prime
 
-52673 is prime
+93131 is prime
 
-52691 is prime
+93133 is prime
 
-52697 is prime
+93139 is prime
 
-52709 is prime
+93151 is prime
 
-52711 is prime
+93169 is prime
 
-52721 is prime
+93179 is prime
 
-52727 is prime
+93187 is prime
 
-52733 is prime
+93199 is prime
 
-52747 is prime
+93229 is prime
 
-52757 is prime
+93239 is prime
 
-52769 is prime
+93241 is prime
 
-52783 is prime
+93251 is prime
 
-52807 is prime
+93253 is prime
 
-52813 is prime
+93257 is prime
 
-52817 is prime
+93263 is prime
 
-52837 is prime
+93281 is prime
 
-52859 is prime
+93283 is prime
 
-52861 is prime
+93287 is prime
 
-52879 is prime
+93307 is prime
 
-52883 is prime
+93319 is prime
 
-52889 is prime
+93323 is prime
 
-52901 is prime
+93329 is prime
 
-52903 is prime
+93337 is prime
 
-52919 is prime
+93371 is prime
 
-52937 is prime
+93377 is prime
 
-52951 is prime
+93383 is prime
 
-52957 is prime
+93407 is prime
 
-52963 is prime
+93419 is prime
 
-52967 is prime
+93427 is prime
 
-52973 is prime
+93463 is prime
 
-52981 is prime
+93479 is prime
 
-52999 is prime
+93481 is prime
 
-53003 is prime
+93487 is prime
 
-53017 is prime
+93491 is prime
 
-53047 is prime
+93493 is prime
 
-53051 is prime
+93497 is prime
 
-53069 is prime
+93503 is prime
 
-53077 is prime
+93523 is prime
 
-53087 is prime
+93529 is prime
 
-53089 is prime
+93553 is prime
 
-53093 is prime
+93557 is prime
 
-53101 is prime
+93559 is prime
 
-53113 is prime
+93563 is prime
 
-53117 is prime
+93581 is prime
 
-53129 is prime
+93601 is prime
 
-53147 is prime
+93607 is prime
 
-53149 is prime
+93629 is prime
 
-53161 is prime
+93637 is prime
 
-53171 is prime
+93683 is prime
 
-53173 is prime
+93701 is prime
 
-53189 is prime
+93703 is prime
 
-53197 is prime
+93719 is prime
 
-53201 is prime
+93739 is prime
 
-53231 is prime
+93761 is prime
 
-53233 is prime
+93763 is prime
 
-53239 is prime
+93787 is prime
 
-53267 is prime
+93809 is prime
 
-53269 is prime
+93811 is prime
 
-53279 is prime
+93827 is prime
 
-53281 is prime
+93851 is prime
 
-53299 is prime
+93871 is prime
 
-53309 is prime
+93887 is prime
 
-53323 is prime
+93889 is prime
 
-53327 is prime
+93893 is prime
 
-53353 is prime
+93901 is prime
 
-53359 is prime
+93911 is prime
 
-53377 is prime
+93913 is prime
 
-53381 is prime
+93923 is prime
 
-53401 is prime
+93937 is prime
 
-53407 is prime
+93941 is prime
 
-53411 is prime
+93949 is prime
 
-53419 is prime
+93967 is prime
 
-53437 is prime
+93971 is prime
 
-53441 is prime
+93979 is prime
 
-53453 is prime
+93983 is prime
 
-53479 is prime
+93997 is prime
 
-53503 is prime
+94007 is prime
 
-53507 is prime
+94009 is prime
 
-53527 is prime
+94033 is prime
 
-53549 is prime
+94049 is prime
 
-53551 is prime
+94057 is prime
 
-53569 is prime
+94063 is prime
 
-53591 is prime
+94079 is prime
 
-53593 is prime
+94099 is prime
 
-53597 is prime
+94109 is prime
 
-53609 is prime
+94111 is prime
 
-53611 is prime
+94117 is prime
 
-53617 is prime
+94121 is prime
 
-53623 is prime
+94151 is prime
 
-53629 is prime
+94153 is prime
 
-53633 is prime
+94169 is prime
 
-53639 is prime
+94201 is prime
 
-53653 is prime
+94207 is prime
 
-53657 is prime
+94219 is prime
 
-53681 is prime
+94229 is prime
 
-53693 is prime
+94253 is prime
 
-53699 is prime
+94261 is prime
 
-53717 is prime
+94273 is prime
 
-53719 is prime
+94291 is prime
 
-53731 is prime
+94307 is prime
 
-53759 is prime
+94309 is prime
 
-53773 is prime
+94321 is prime
 
-53777 is prime
+94327 is prime
 
-53783 is prime
+94331 is prime
 
-53791 is prime
+94343 is prime
 
-53813 is prime
+94349 is prime
 
-53819 is prime
+94351 is prime
 
-53831 is prime
+94379 is prime
 
-53849 is prime
+94397 is prime
 
-53857 is prime
+94399 is prime
 
-53861 is prime
+94421 is prime
 
-53881 is prime
+94427 is prime
 
-53887 is prime
+94433 is prime
 
-53891 is prime
+94439 is prime
 
-53897 is prime
+94441 is prime
 
-53899 is prime
+94447 is prime
 
-53917 is prime
+94463 is prime
 
-53923 is prime
+94477 is prime
 
-53927 is prime
+94483 is prime
 
-53939 is prime
-
-53951 is prime
-
-53959 is prime
-
-53987 is prime
-
-53993 is prime
+94513 is prime
 
