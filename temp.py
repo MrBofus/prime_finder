@@ -23,11 +23,11 @@ def bounded_mersenne_search(lower, upper):
 
         print('candidate is ' + str(int(math.log10( candidate ) + 1)) + ' digits')
 
-        print('probability of being prime: ' + str(round(100*math.log10(mpower)/mpower, 5)) + '%\n\n')
+        prob = 2*math.log2(mpower) / mpower
+        print('probability of being prime: ' + str(round(100*prob, 5)) + '%\n\n')
 
         t_to_start = time.monotonic()
         p = pc.LucasLehmer(1, mpower, True)
-
         t_to_end = time.monotonic()
 
         print('\n\n\n')
@@ -41,3 +41,22 @@ def bounded_mersenne_search(lower, upper):
                 f.write(str(p) + ' is prime\n\n')
 
         tcount += 1
+
+
+'''
+t_to_start = time.monotonic()
+p = pc.LucasLehmer(1, 11213, True)
+t_to_end = time.monotonic()
+
+print('\ntime using Lucas Lehmer: ' + str(round(t_to_end - t_to_start, 2)) + 's\n\n')
+
+t_to_start = time.monotonic()
+p = pc.is_Prime(0, 2**11213 - 1, 8)
+t_to_end = time.monotonic()
+print(p)
+print('time using Miller-Rabin: ' + str(round(t_to_end - t_to_start, 2)) + 's\n\n')
+'''
+
+s = 0.000506
+P = 1/s
+print(P*350 / (3600*24))

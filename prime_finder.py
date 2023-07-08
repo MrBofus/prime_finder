@@ -144,7 +144,8 @@ def bounded_mersenne_search(lower, upper):
 
         print('candidate is ' + str(int(math.log10( candidate ) + 1)) + ' digits')
 
-        print('probability of being prime: ' + str(round(100*math.log10(mpower)/mpower, 5)) + '%\n\n')
+        prob = 2*math.log2(mpower) / mpower
+        print('probability of being prime: ' + str(round(100*prob, 5)) + '%\n\n')
 
         t_to_start = time.monotonic()
         p = pc.LucasLehmer(1, mpower, True)
