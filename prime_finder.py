@@ -128,7 +128,7 @@ def bounded_mersenne_search(lower, upper):
     trials = 10**5
     tcount = 0
 
-    mpower = lower
+    mpower = int(lower)
     while tcount < trials:
         print('\n\n\n`````````````````````````````````````````````````````')
         print('finding new candidate...')
@@ -197,7 +197,7 @@ number_of_searches_per_batch_per_thread = 5
 # specify number of checks each thread completes
 number_of_batches = 10
 
-lower, upper = 2*10**4, 3*10**4
+lower, upper = 6*10**5, 7*10**5
 
 mode = 'bounded mersenne'
 
