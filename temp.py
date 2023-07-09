@@ -57,6 +57,10 @@ print(p)
 print('time using Miller-Rabin: ' + str(round(t_to_end - t_to_start, 2)) + 's\n\n')
 '''
 
+'''
 s = 0.0011
 P = 1/s
 print(P*43 / (3600))
+'''
+
+print(pc.is_Prime(0, 2**21701 - 1, 8))

@@ -134,13 +134,10 @@ def bounded_mersenne_search(lower, upper):
         print('finding new candidate...')
 
         while True:
-
-            _ = pc.is_Prime(0, mpower, 8)
-
-            if _:
-                break
-
             mpower += 1
+            
+            _ = pc.is_Prime(0, mpower, 8)
+            if _: break
 
         print('\npower is ' + str(int(math.log10( mpower ) + 1)) + ' digits (' + str(mpower) + ')')
 
@@ -198,7 +195,7 @@ number_of_searches_per_batch_per_thread = 5
 # specify number of checks each thread completes
 number_of_batches = 10
 
-lower, upper = 1*10**4, 2*10**4
+lower, upper = 2*10**4, 3*10**4
 
 mode = 'bounded mersenne'
 
