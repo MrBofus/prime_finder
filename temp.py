@@ -10,7 +10,7 @@ def bounded_mersenne_search(lower, upper):
     while tcount < trials:
         print('\n\n\nfinding new candidate...')
         while True:
-            mpower = random.randint(5*10**5, 6*10**5)
+            mpower = random.randint(lower, upper)
 
             _ = pc.is_Prime(0, mpower, 8)
 

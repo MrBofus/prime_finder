@@ -162,6 +162,8 @@ def bounded_mersenne_search(lower, upper):
             print('candidate is prime')
             with open('resources/mersenne_primes.txt', 'a') as f:
                 f.write(str(p) + ' is prime\n\n')
+            with open('resources/mersenne_prime_powers.txt', 'a') as f:
+                f.write(str(mpower) + ' is a mersenne power\n\n')
 
         tcount += 1
         mpower += 1
