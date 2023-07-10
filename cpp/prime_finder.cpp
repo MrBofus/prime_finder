@@ -16,12 +16,8 @@ FILE* primefile;
 int main(void) {
 
 	if (mode == 1) {
-
-		// unsigned int lower = 90*pow(10, 6);
-		// unsigned int upper = 100*pow(10, 6);
-
-		unsigned int lower = 756839 - 2;
-		unsigned int upper = 756839 + 2;
+		unsigned int lower = 58*pow(10, 6);
+		unsigned int upper = 74*pow(10, 6);
 
 		unsigned int power = lower;
 
