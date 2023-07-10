@@ -45,7 +45,7 @@ bool LucasLehmer(unsigned int c){
 	// print_gmp(s);
     printf("\n");
 	for(int i = 1; i < c-1; i++){
-		if (i%100==0){
+		if (i%15==0){
 			float percent = 100*i/(c-1);
 			printf("\rvalidating primality...\t%.0f%% complete (%d/%d)", percent, i, (c-1));
             
