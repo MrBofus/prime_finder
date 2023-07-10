@@ -1,7 +1,13 @@
+/****************************************************************************************************************************/
+// import libraries
+//
+// libraries imported:
+//    prime_functions.h  --  library importing gmp and gmpxx
+
 #include "prime_functions.h"
 
 /****************************************************************************************************************************/
-
+// function: trial composite
 
 bool trial_composite_fast(mpz_t t1, mpz_t t2, mpz_t t3,
                           mpz_t nprime, mpz_t one, mpz_t two,
@@ -31,8 +37,7 @@ bool trial_composite_fast(mpz_t t1, mpz_t t2, mpz_t t3,
 
 
 /****************************************************************************************************************************/
-
-
+// function: is prime
 
 bool isPrime_mpz_fast(mpz_t value){
     // printf("entered test\n");
