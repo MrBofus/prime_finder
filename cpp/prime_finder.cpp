@@ -72,19 +72,20 @@ int main(void) {
 		mpz_inits(lower, upper, base, NULL);
 
 		mpz_set_ui(base, 10);
-		// mpz_pow_ui(lower, base, 5*pow(10, 2));
-		// mpz_pow_ui(upper, base, 6*pow(10, 3));
+		mpz_pow_ui(lower, base, 3*pow(10, 5));
+		mpz_pow_ui(upper, base, 4*pow(10, 5));
 
-		mpz_pow_ui(lower, base, 1200);
-		mpz_pow_ui(upper, base, 1200);
-		mpz_add_ui(upper, upper, 2);
+		mpz_add_ui(lower, lower, 1);
+
+		unsigned int counter = 0;
 
 		while (true){
+			counter++;
 			printf("\n\n\n`````````````````````````````````````````````````````\n");
 			printf("checking new candidate...\n");
 
 			size_t length = mpz_sizeinbase(lower, 10);
-
+			printf("candidate #%d\n", counter);
 			printf("candidate is %lu digits\n", length);
 
 			time_t t_to_start = time(NULL);
@@ -101,7 +102,7 @@ int main(void) {
 
 			printf("\ncandidate was not prime\n");
 
-			mpz_add_ui(lower, lower, 1);
+			mpz_add_ui(lower, lower, 2);
 			int check = mpz_cmp(lower, upper);
 			
 			if (check > 0){ break; }
