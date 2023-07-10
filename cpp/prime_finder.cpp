@@ -4,8 +4,7 @@
 #include <math.h>
 #include <cstdlib>
 #include <cmath>
-#include "prime_functions.h"
-#include "primt_functions_fast.h"
+#include "prime_functions_fast.h"
 
 int mode = 2;
 
@@ -89,7 +88,7 @@ int main(void) {
 			printf("candidate is %lu digits\n", length);
 
 			time_t t_to_start = time(NULL);
-			if (isPrime_mpz(lower)){
+			if (isPrime_mpz_fast(lower)){
 				printf("\ncandidate was prime\n");
 				// primefile = fopen("prime.txt", "a");
 				// fputs("\n", primefile);
