@@ -17,11 +17,8 @@ int main(void) {
 
 	if (mode == 1) {
 
-		// unsigned int lower = 4*pow(10, 4);
-		// unsigned int upper = 5*pow(10, 4);
-
-		unsigned int lower = 1257787 - 5; // 30402457 - 5;
-		unsigned int upper = 1257787 + 5; // 30402457 + 5;
+		unsigned int lower = 90*pow(10, 6);
+		unsigned int upper = 100*pow(10, 6);
 
 		unsigned int power = lower;
 
@@ -38,7 +35,7 @@ int main(void) {
 				}
 			}
 
-			float ndigits = log10(power) + 1;
+			float ndigits = log10(power);
 			printf("\npower is %.0f digits (%d)\n", ndigits, power);
 
 			bool val = LucasLehmer(power);
