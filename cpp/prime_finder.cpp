@@ -17,7 +17,7 @@ int main(void) {
 
 	if (mode == 1) {
 		unsigned int lower = 58*pow(10, 6);
-		unsigned int upper = 74*pow(10, 6);
+		unsigned int upper = 59*pow(10, 6);
 
 		unsigned int power = lower;
 
