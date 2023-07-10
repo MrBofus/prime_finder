@@ -5,11 +5,9 @@
 #include <cstdlib>
 #include <cmath>
 #include "prime_functions.h"
+#include "primt_functions_fast.h"
 
-using namespace std;
-
-
-int mode = 1;
+int mode = 2;
 
 FILE* primefile;
 
@@ -70,14 +68,17 @@ int main(void) {
 		}
 	}
 
-	/*
 	else if (mode == 2){
 		mpz_t lower, upper, base;
 		mpz_inits(lower, upper, base, NULL);
 
 		mpz_set_ui(base, 10);
-		mpz_pow_ui(lower, base, 25000);
-		mpz_pow_ui(upper, base, 35000);
+		// mpz_pow_ui(lower, base, 5*pow(10, 2));
+		// mpz_pow_ui(upper, base, 6*pow(10, 3));
+
+		mpz_pow_ui(lower, base, 1200);
+		mpz_pow_ui(upper, base, 1200);
+		mpz_add_ui(upper, upper, 2);
 
 		while (true){
 			printf("\n\n\n`````````````````````````````````````````````````````\n");
@@ -87,24 +88,26 @@ int main(void) {
 
 			printf("candidate is %lu digits\n", length);
 
+			time_t t_to_start = time(NULL);
 			if (isPrime_mpz(lower)){
 				printf("\ncandidate was prime\n");
-				primefile = fopen("prime.txt", "a");
-				fputs("\n", primefile);
-				mpz_out_str(primefile, 10, lower);
-				fputs("\n", primefile);
-				fclose(primefile);
+				// primefile = fopen("prime.txt", "a");
+				// fputs("\n", primefile);
+				// mpz_out_str(primefile, 10, lower);
+				// fputs("\n", primefile);
+				// fclose(primefile);
 			}
+			time_t t_to_end = time(NULL);
+			printf("(took %lds to validate)\n", t_to_end - t_to_start);
 
 			printf("\ncandidate was not prime\n");
 
 			mpz_add_ui(lower, lower, 1);
 			int check = mpz_cmp(lower, upper);
 			
-			if (check == 0){ break; }
+			if (check > 0){ break; }
 		}
 	}
-	*/
 
 	return 0;
 }
