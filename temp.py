@@ -64,8 +64,12 @@ print(P*43 / (3600))
 '''
 
 # p = int(10**10000 - 1)
-print(pc.is_Prime(0, 101, 8))
+# print(pc.is_Prime(0, 101, 8))
 '''
 with open('resources/mersenne_primes.txt', 'a') as f:
     f.write(str(p) + ' is prime\n\n')
 '''
+
+
+result = (7**5) % 13
+print(result)
