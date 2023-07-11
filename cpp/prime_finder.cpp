@@ -79,8 +79,8 @@ int main(void) {
 		mpz_inits(lower, upper, base, random, NULL);
 
 		mpz_set_ui(base, 10);
-		mpz_pow_ui(lower, base, 400*pow(10, 3));
-		mpz_pow_ui(upper, base, 401*pow(10, 3));
+		mpz_pow_ui(lower, base, 5*pow(10, 3));
+		mpz_pow_ui(upper, base, 5.1*pow(10, 3));
 
 
 		mpz_urandomm(random, rstate, upper);
@@ -94,6 +94,7 @@ int main(void) {
 		cout << "\n`````````````````````````````````````````````````````" << endl;
 
 		unsigned int counter = 0;
+		unsigned int pcounter = 0;
 		while (true){
 			counter++;
 
@@ -105,14 +106,15 @@ int main(void) {
 			// printf("checking new candidate...\n");
 
 			size_t length = mpz_sizeinbase(lower, 10);
-			cout << "\rcandidate #" << counter;
+			cout << "\rcandidate #" << counter << " -- " << pcounter << " primes found";
 			cout.flush();
 			// printf("\rcandidate #%d", counter);
 			// printf("candidate is %lu digits\n", length);
 
 			time_t t_to_start = time(NULL);
 			if (isPrime_mpz_fast(lower, rstate)){
-				printf("\ncandidate was prime\n");
+				pcounter++;
+				// printf("\ncandidate was prime\n");
 				primefile = fopen("twin_prime_candidates.txt", "a");
 				fputs("\n", primefile);
 				mpz_out_str(primefile, 10, lower);
