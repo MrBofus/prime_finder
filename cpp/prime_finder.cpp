@@ -79,8 +79,8 @@ int main(void) {
 		mpz_inits(lower, upper, base, random, NULL);
 
 		mpz_set_ui(base, 10);
-		mpz_pow_ui(lower, base, 1*pow(10, 4));
-		mpz_pow_ui(upper, base, 1.5*pow(10, 4));
+		mpz_pow_ui(lower, base, 1.2*pow(10, 4));
+		mpz_pow_ui(upper, base, 1.3*pow(10, 4));
 
 
 		mpz_urandomm(random, rstate, upper);
