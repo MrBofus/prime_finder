@@ -69,34 +69,26 @@ int main(void) {
 
 	else if (mode == 2){
 
-		mpz_t result, base, exponent, mod, iterator;
-		mpz_inits(result, base, exponent, mod, iterator, NULL);
+		gmp_randstate_t rstate;
+		gmp_randinit_mt(rstate);
 
-		mpz_set_ui(base, 7);
-		mpz_set_ui(exponent, 5);
-		mpz_set_ui(mod, 13);
-		mpz_set_ui(iterator, 0);
-		
-		mpz_powm_fast(result, base, exponent, mod, iterator);
+		unsigned long seed;
+		gmp_randseed_ui(rstate, seed);
 
-		gmp_printf("result: %Zd\n", result);
-
-		mpz_clears(result, base, exponent, mod, iterator, NULL);
-
-		/*
-
-
-		mpz_t lower, upper, base;
-		mpz_inits(lower, upper, base, NULL);
+		mpz_t lower, upper, base, random;
+		mpz_inits(lower, upper, base, random, NULL);
 
 		mpz_set_ui(base, 10);
-		mpz_pow_ui(lower, base, 5*pow(10, 4));
-		mpz_pow_ui(upper, base, 6*pow(10, 4));
+		mpz_pow_ui(lower, base, 1*pow(10, 4));
+		mpz_pow_ui(upper, base, 2*pow(10, 4));
 
-		mpz_add_ui(lower, lower, 1);
+
+		mpz_urandomm(random, rstate, upper);
+
+		mpz_add(lower, random, lower);
+		mpz_add(upper, random, upper);
 
 		unsigned int counter = 0;
-
 		while (true){
 			counter++;
 			printf("\n\n\n`````````````````````````````````````````````````````\n");
@@ -107,25 +99,27 @@ int main(void) {
 			printf("candidate is %lu digits\n", length);
 
 			time_t t_to_start = time(NULL);
-			if (isPrime_mpz_fast(lower)){
+			if (isPrime_mpz_fast(lower, rstate)){
 				printf("\ncandidate was prime\n");
-				// primefile = fopen("prime.txt", "a");
-				// fputs("\n", primefile);
-				// mpz_out_str(primefile, 10, lower);
-				// fputs("\n", primefile);
-				// fclose(primefile);
+				primefile = fopen("prime.txt", "a");
+				fputs("\n", primefile);
+				mpz_out_str(primefile, 10, lower);
+				fputs("\n", primefile);
+				fclose(primefile);
 			}
+			else {printf("\ncandidate was not prime\n");}
 			time_t t_to_end = time(NULL);
-			printf("(took %lds to validate)\n", t_to_end - t_to_start);
 
-			printf("\ncandidate was not prime\n");
+			printf("(took %lds to validate)\n", t_to_end - t_to_start);
 
 			mpz_add_ui(lower, lower, 2);
 			int check = mpz_cmp(lower, upper);
 			
 			if (check > 0){ break; }
 		}
-		*/
+
+		gmp_randclear(rstate);
+		mpz_clears(lower, upper, base, random, NULL);
 	}
 	return 0;
 }
