@@ -79,8 +79,8 @@ int main(void) {
 		mpz_inits(lower, upper, base, random, NULL);
 
 		mpz_set_ui(base, 10);
-		mpz_pow_ui(lower, base, 1*pow(10, 5));
-		mpz_pow_ui(upper, base, 2*pow(10, 5));
+		mpz_pow_ui(lower, base, 4*pow(10, 4));
+		mpz_pow_ui(upper, base, 5*pow(10, 4));
 
 
 		mpz_urandomm(random, rstate, upper);
@@ -112,7 +112,7 @@ int main(void) {
 
 			printf("(took %lds to validate)\n", t_to_end - t_to_start);
 
-			mpz_add_ui(lower, lower, 2);
+			mpz_add_ui(lower, lower, 1);
 			int check = mpz_cmp(lower, upper);
 			
 			if (check > 0){ break; }
