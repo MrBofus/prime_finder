@@ -68,12 +68,30 @@ int main(void) {
 	}
 
 	else if (mode == 2){
+
+		mpz_t result, base, exponent, mod, iterator;
+		mpz_inits(result, base, exponent, mod, iterator, NULL);
+
+		mpz_set_ui(base, 7);
+		mpz_set_ui(exponent, 5);
+		mpz_set_ui(mod, 13);
+		mpz_set_ui(iterator, 0);
+		
+		mpz_powm_fast(result, base, exponent, mod, iterator);
+
+		gmp_printf("result: %Zd\n", result);
+
+		mpz_clears(result, base, exponent, mod, iterator, NULL);
+
+		/*
+
+
 		mpz_t lower, upper, base;
 		mpz_inits(lower, upper, base, NULL);
 
 		mpz_set_ui(base, 10);
-		mpz_pow_ui(lower, base, 3*pow(10, 5));
-		mpz_pow_ui(upper, base, 4*pow(10, 5));
+		mpz_pow_ui(lower, base, 5*pow(10, 4));
+		mpz_pow_ui(upper, base, 6*pow(10, 4));
 
 		mpz_add_ui(lower, lower, 1);
 
@@ -107,7 +125,7 @@ int main(void) {
 			
 			if (check > 0){ break; }
 		}
+		*/
 	}
-
 	return 0;
 }

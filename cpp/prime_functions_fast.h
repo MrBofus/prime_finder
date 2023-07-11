@@ -15,9 +15,9 @@ bool trial_composite_fast(mpz_t t1, mpz_t t2, mpz_t t3,
                           mpz_t a, mpz_t d, mpz_t n, mpz_t s){
 	
 
-    if (mpz_cmp(t1, one) == 0){
-        return false;
-    }
+	if (mpz_cmp(t1, one) == 0){
+		return false;
+	}
 
     while (true){
         mpz_powm(t2, two, iterator, n);
@@ -28,7 +28,7 @@ bool trial_composite_fast(mpz_t t1, mpz_t t2, mpz_t t3,
             return false;
         }
 
-        mpz_add_ui(iterator, iterator, 1);
+		mpz_add_ui(iterator, iterator, 1);
         if (mpz_cmp(iterator, s) == 0) { break; }
     }
     return true;
@@ -39,14 +39,32 @@ bool trial_composite_fast(mpz_t t1, mpz_t t2, mpz_t t3,
 /****************************************************************************************************************************/
 // function: is prime
 
-bool isPrime_mpz_fast(mpz_t value){
-    // printf("entered test\n");
-    mpz_t l, a, d, dprime, s, zero;
-    // printf("defined items\n");
-    mpz_inits(l, a, d, dprime, s, zero, NULL);
+void mpz_powm_fast(mpz_t result, mpz_t base, mpz_t exponent, mpz_t mod, mpz_t iterator){
+    while(true){
+        mpz_mul(result, base, base);
+        mpz_mod(result, result, mod);
 
-    mpz_t t1, t2, t3, nprime, one, two, iterator;
-    mpz_inits(t1, t2, t3, nprime, one, two, iterator, NULL);
+        if(mpz_cmp(iterator, exponent) == 0){
+            break;
+        }
+
+        mpz_add_ui(iterator, iterator, 1);
+    }
+}
+
+
+
+
+/****************************************************************************************************************************/
+
+bool isPrime_mpz_fast(mpz_t value){
+	// printf("entered test\n");
+	mpz_t l, a, d, dprime, s, zero;
+	// printf("defined items\n");
+	mpz_inits(l, a, d, dprime, s, zero, NULL);
+
+    mpz_t t1, t2, t3, nprime, one, two, iterator, jiterator;
+    mpz_inits(t1, t2, t3, nprime, one, two, iterator, jiterator, NULL);
 
     mpz_set_ui(one, 1);
     mpz_set_ui(two, 2);
@@ -61,28 +79,27 @@ bool isPrime_mpz_fast(mpz_t value){
 	
     // printf("validating primality...\t%.0f%% complete", 0.0);
 
-    if (mpz_cmp_ui(l, 2) == 0 || mpz_cmp_ui(l, 4) == 0 || mpz_cmp_ui(l, 5) == 0 || mpz_cmp_ui(l, 6) == 0 || mpz_cmp_ui(l, 8) == 0 || mpz_cmp_ui(l, 0) == 0){
-        printf("\rvalidating primality...\t%.0f%% complete", 100.0);
-        printf("\n");
-	    
+	if (mpz_cmp_ui(l, 2) == 0 || mpz_cmp_ui(l, 4) == 0 || mpz_cmp_ui(l, 5) == 0 || mpz_cmp_ui(l, 6) == 0 || mpz_cmp_ui(l, 8) == 0 || mpz_cmp_ui(l, 0) == 0){
+		printf("\rvalidating primality...\t%.0f%% complete", 100.0);
+		printf("\n");
         mpz_clears(l, a, d, dprime, s, zero, NULL);
         mpz_clears(t1, t2, t3, nprime, one, two, iterator, NULL);
-        return false;
-    }
+		return false;
+	}
 
     mpz_set_ui(s, 0);
     mpz_sub_ui(d, value, 1);
     mpz_set_ui(zero, 0);
 
-    while (true){
-        mpz_mod_ui(dprime, d, 2);
-        if (mpz_cmp(dprime, zero) != 0){
-            break;
-        }
+	while (true){
+		mpz_mod_ui(dprime, d, 2);
+		if (mpz_cmp(dprime, zero) != 0){
+			break;
+		}
 
-        mpz_rshift(d, d, 1);
-        mpz_add_ui(s, s, 1);
-    }
+		mpz_rshift(d, d, 1);
+		mpz_add_ui(s, s, 1);
+	}
 
     gmp_randstate_t rstate;
     gmp_randinit_mt(rstate);
@@ -90,34 +107,31 @@ bool isPrime_mpz_fast(mpz_t value){
     unsigned long seed;
     gmp_randseed_ui(rstate, seed);
 
-    for (int i = 0; i < 12; i++){
-        float percent = 100*i/8;
-        printf("validating primality...\t%.0f%% complete", percent);
+	for (int i = 0; i < 12; i++){
+		float percent = 100*i/8;
+		printf("validating primality...\t%.0f%% complete", percent);
 
         mpz_urandomm(a, rstate, value);
 
-        mpz_powm(t1, a, d, value);
+        mpz_set_ui(jiterator, 0);
+        mpz_powm_fast(t1, a, d, value, jiterator);
         mpz_set_ui(iterator, 0);
 
         if (trial_composite_fast(t1, t2, t3,
                                 nprime, one, two,
                                 iterator,
                                 a, d, value, s)){
-            gmp_randclear(rstate);
-
-            mpz_clears(l, a, d, dprime, s, zero, NULL);
+			gmp_randclear(rstate);
+			mpz_clears(l, a, d, dprime, s, zero, NULL);
             mpz_clears(t1, t2, t3, nprime, one, two, iterator, NULL);
-
-            printf("\n");
-            return false;
+			printf("\n");
+			return false;
 		}
 	}
 
-    gmp_randclear(rstate);
-	
-    mpz_clears(l, a, d, dprime, s, zero, NULL);
+	gmp_randclear(rstate);
+	mpz_clears(l, a, d, dprime, s, zero, NULL);
     mpz_clears(t1, t2, t3, nprime, one, two, iterator, NULL);
-	
-    printf("\n");
-    return true;
+	printf("\n");
+	return true;
 }
