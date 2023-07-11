@@ -59,30 +59,46 @@ void mpz_powm_fast(mpz_t result, mpz_t base, mpz_t exponent, mpz_t mod){
     }
 }
 
+/****************************************************************************************************************************/
 
+
+bool checkLastDigit(mpz_t value){
+
+    mpz_t l;
+    mpz_init(l);
+
+    mpz_mod_ui(l, value, 10);
+
+    if (mpz_cmp_ui(l, 2) == 0 || mpz_cmp_ui(l, 4) == 0 || 
+        mpz_cmp_ui(l, 5) == 0 || mpz_cmp_ui(l, 6) == 0 || 
+        mpz_cmp_ui(l, 8) == 0 || mpz_cmp_ui(l, 0) == 0){
+        return true;
+    }
+
+    mpz_clear(l);
+    return false;
+
+}
 
 
 /****************************************************************************************************************************/
 
 bool isPrime_mpz_fast(mpz_t value, gmp_randstate_t rstate){
 
-	mpz_t l, a, d, dprime, s, zero;
-	mpz_inits(l, a, d, dprime, s, zero, NULL);
+	mpz_t a, d, dprime, s, zero;
+	mpz_inits(a, d, dprime, s, zero, NULL);
 
     mpz_t t1, t2, t3, nprime, two;
-    mpz_inits(t1, t2, t3, nprime,  two, NULL);
+    mpz_inits(t1, t2, t3, nprime, two, NULL);
 
     mpz_set_ui(two, 2);
     mpz_sub_ui(nprime, value, 1);
-
-
-    mpz_mod_ui(l, value, 10);
 	
     // printf("validating primality...\t%.0f%% complete", 0.0);
 
-	if (mpz_cmp_ui(l, 2) == 0 || mpz_cmp_ui(l, 4) == 0 || mpz_cmp_ui(l, 5) == 0 || mpz_cmp_ui(l, 6) == 0 || mpz_cmp_ui(l, 8) == 0 || mpz_cmp_ui(l, 0) == 0){
+	if (checkLastDigit(value)){
 		cout << "\rvalidating primality...\t100% complete";
-        mpz_clears(l, a, d, dprime, s, zero, NULL);
+        mpz_clears(a, d, dprime, s, zero, NULL);
         mpz_clears(t1, t2, t3, nprime, two, NULL);
 		return false;
 	}
@@ -114,7 +130,7 @@ bool isPrime_mpz_fast(mpz_t value, gmp_randstate_t rstate){
             cout << "\rvalidating primality...\t100% complete";
             cout << endl;
 		
-			mpz_clears(l, a, d, dprime, s, zero, NULL);
+			mpz_clears(a, d, dprime, s, zero, NULL);
             mpz_clears(t1, t2, t3, nprime, two, NULL);
 			printf("\n");
 			return false;
@@ -124,7 +140,7 @@ bool isPrime_mpz_fast(mpz_t value, gmp_randstate_t rstate){
     cout << "\rvalidating primality...\t100% complete";
     cout << endl;
 
-	mpz_clears(l, a, d, dprime, s, zero, NULL);
+	mpz_clears(a, d, dprime, s, zero, NULL);
     mpz_clears(t1, t2, t3, nprime, two, NULL);
 	printf("\n");
 

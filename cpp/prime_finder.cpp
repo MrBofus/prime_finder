@@ -91,6 +91,11 @@ int main(void) {
 		unsigned int counter = 0;
 		while (true){
 			counter++;
+
+			while(checkLastDigit(lower)){
+				mpz_add_ui(lower, lower, 1);
+			}
+
 			printf("\n\n\n`````````````````````````````````````````````````````\n");
 			printf("checking new candidate...\n");
 
