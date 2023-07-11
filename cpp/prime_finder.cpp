@@ -79,14 +79,19 @@ int main(void) {
 		mpz_inits(lower, upper, base, random, NULL);
 
 		mpz_set_ui(base, 10);
-		mpz_pow_ui(lower, base, 1.2*pow(10, 4));
-		mpz_pow_ui(upper, base, 1.3*pow(10, 4));
+		mpz_pow_ui(lower, base, 400*pow(10, 3));
+		mpz_pow_ui(upper, base, 401*pow(10, 3));
 
 
 		mpz_urandomm(random, rstate, upper);
 
 		mpz_add(lower, random, lower);
 		mpz_add(upper, random, upper);
+
+
+		cout << "\n\n\n`````````````````````````````````````````````````````" << endl;
+		cout << "beginning search for twin primes..." << endl;
+		cout << "\n`````````````````````````````````````````````````````" << endl;
 
 		unsigned int counter = 0;
 		while (true){
@@ -96,12 +101,14 @@ int main(void) {
 				mpz_add_ui(lower, lower, 1);
 			}
 
-			printf("\n\n\n`````````````````````````````````````````````````````\n");
-			printf("checking new candidate...\n");
+			// printf("\n\n\n`````````````````````````````````````````````````````\n");
+			// printf("checking new candidate...\n");
 
 			size_t length = mpz_sizeinbase(lower, 10);
-			printf("candidate #%d\n", counter);
-			printf("candidate is %lu digits\n", length);
+			cout << "\rcandidate #" << counter;
+			cout.flush();
+			// printf("\rcandidate #%d", counter);
+			// printf("candidate is %lu digits\n", length);
 
 			time_t t_to_start = time(NULL);
 			if (isPrime_mpz_fast(lower, rstate)){
@@ -112,10 +119,12 @@ int main(void) {
 				fputs("\n", primefile);
 				fclose(primefile);
 			}
-			else {printf("\ncandidate was not prime\n");}
+			else {
+				// printf("\ncandidate was not prime\n");
+			}
 			time_t t_to_end = time(NULL);
 
-			printf("(took %lds to validate)\n", t_to_end - t_to_start);
+			// printf("(took %lds to validate)\n", t_to_end - t_to_start);
 
 			mpz_add_ui(lower, lower, 1);
 			int check = mpz_cmp(lower, upper);
