@@ -71,5 +71,5 @@ with open('resources/mersenne_primes.txt', 'a') as f:
 '''
 
 
-result = (7**5) % 13
+result = (13**19) % 60
 print(result)
