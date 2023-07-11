@@ -79,8 +79,8 @@ int main(void) {
 		mpz_inits(lower, upper, base, random, NULL);
 
 		mpz_set_ui(base, 10);
-		mpz_pow_ui(lower, base, 4*pow(10, 4));
-		mpz_pow_ui(upper, base, 5*pow(10, 4));
+		mpz_pow_ui(lower, base, 1*pow(10, 4));
+		mpz_pow_ui(upper, base, 1.5*pow(10, 4));
 
 
 		mpz_urandomm(random, rstate, upper);
@@ -101,7 +101,7 @@ int main(void) {
 			time_t t_to_start = time(NULL);
 			if (isPrime_mpz_fast(lower, rstate)){
 				printf("\ncandidate was prime\n");
-				primefile = fopen("prime.txt", "a");
+				primefile = fopen("twin_prime_candidates.txt", "a");
 				fputs("\n", primefile);
 				mpz_out_str(primefile, 10, lower);
 				fputs("\n", primefile);
