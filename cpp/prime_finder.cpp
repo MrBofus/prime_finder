@@ -79,8 +79,10 @@ int main(void) {
 		mpz_inits(lower, upper, base, random, NULL);
 
 		mpz_set_ui(base, 10);
-		mpz_pow_ui(lower, base, 1*pow(10, 2));
-		mpz_pow_ui(upper, base, 2*pow(10, 2));
+		mpz_pow_ui(lower, base, 1.11*pow(10, 3));
+		mpz_pow_ui(upper, base, 1.21*pow(10, 3));
+
+		mpz_add_ui(lower, lower, 1);
 
 
 		// mpz_urandomm(random, rstate, upper);
@@ -90,7 +92,7 @@ int main(void) {
 
 
 		cout << "\n\n\n`````````````````````````````````````````````````````" << endl;
-		cout << "beginning search for twin primes..." << endl;
+		cout << "beginning search for quadruplet primes..." << endl;
 		cout << "\n`````````````````````````````````````````````````````" << endl;
 
 		unsigned int counter = 0;
@@ -107,7 +109,7 @@ int main(void) {
 
 			size_t length = mpz_sizeinbase(lower, 10);
 			cout << "\rcandidate #" << counter << " -- " << pcounter << " primes found";
-			cout.flush();
+			// cout.flush();
 			// printf("\rcandidate #%d", counter);
 			// printf("candidate is %lu digits\n", length);
 
@@ -115,7 +117,7 @@ int main(void) {
 			if (isPrime_mpz_fast(lower, rstate)){
 				pcounter++;
 				// printf("\ncandidate was prime\n");
-				primefile = fopen("small_quadruplet_search.txt", "a");
+				primefile = fopen("quadruplet_search_2.txt", "a");
 				fputs("\n", primefile);
 				mpz_out_str(primefile, 10, lower);
 				fputs("\n", primefile);
