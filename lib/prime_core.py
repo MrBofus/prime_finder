@@ -60,8 +60,8 @@ def is_Prime(j, n, n_trials):
     while d%2 == 0:
         d >>= 1
         s += 1
-    print(d)
-    print(s)
+    # print(d)
+    # print(s)
     # print_green('bitshifted')
 
     # print_green('starting trials')
