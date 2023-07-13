@@ -79,16 +79,14 @@ int main(void) {
 		mpz_inits(lower, upper, base, random, NULL);
 
 		mpz_set_ui(base, 10);
-		mpz_pow_ui(lower, base, 1.11*pow(10, 3));
-		mpz_pow_ui(upper, base, 1.21*pow(10, 3));
-
-		mpz_add_ui(lower, lower, 1);
+		mpz_pow_ui(lower, base, 1000); // 1.00*pow(10, 3));
+		mpz_pow_ui(upper, base, 1001); // 1.01*pow(10, 3));
 
 
-		// mpz_urandomm(random, rstate, upper);
+		mpz_urandomm(random, rstate, upper);
 
-		// mpz_add(lower, random, lower);
-		// mpz_add(upper, random, upper);
+		mpz_add(lower, random, lower);
+		mpz_add(upper, random, upper);
 
 
 		cout << "\n\n\n`````````````````````````````````````````````````````" << endl;
@@ -108,7 +106,7 @@ int main(void) {
 			// printf("checking new candidate...\n");
 
 			size_t length = mpz_sizeinbase(lower, 10);
-			cout << "\rcandidate #" << counter << " -- " << pcounter << " primes found";
+			cout << "\rcandidate #" << counter << " -- " << pcounter << " primes found -- (expect 1 prime in every " << length << " candidates)";
 			// cout.flush();
 			// printf("\rcandidate #%d", counter);
 			// printf("candidate is %lu digits\n", length);
