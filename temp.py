@@ -70,9 +70,15 @@ with open('resources/mersenne_primes.txt', 'a') as f:
     f.write(str(p) + ' is prime\n\n')
 '''
 
-'''
-result = (13**19) % 60
-print(result)
+print('starting...')
+prime_candidate = 0
+
+print( int(math.log10(prime_candidate) + 1) )
+
+# p = int(10**10000 - 1)
+print(pc.is_Prime(0, 
+                  prime_candidate, 
+                  8))
 '''
 
 with open('cpp/quadruplet_search_2.txt') as f:
@@ -89,7 +95,7 @@ for i in range(1, len(primelist)):
     # if there is a twin prime, append it to the twin primes text file
     if primelist[i] - primelist[i-1] == 2:
         
-        # print('twin prime found')
+        print('twin prime found')
         with open('resources/q_twin_primes.txt', 'a') as f:
             f.write('```````````````````\ntwin primes:\n\n')
             f.write(str(primelist[i-1]) + '\n\n')
@@ -105,7 +111,7 @@ for i in range(1, len(primelist)):
                 (primelist[i] - primelist[i-1] == 2 and 
                     primelist[i] - primelist[i-2] == 6)):
             
-            # print('triplet prime found')
+            print('triplet prime found')
             with open('resources/q_twin_primes.txt', 'a') as f:
                 f.write('```````````````````\ntriplet primes:\n\n')
                 f.write(str(primelist[i-2]) + '\n\n')
@@ -114,3 +120,4 @@ for i in range(1, len(primelist)):
                 f.write('```````````````````\n\n\n\n')
     
     pcounter += 1
+'''
