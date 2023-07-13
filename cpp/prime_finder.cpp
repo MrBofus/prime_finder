@@ -67,7 +67,7 @@ int main(void) {
 		}
 	}
 
-	else if (mode == 2){
+	else if (mode == 2) {
 
 		gmp_randstate_t rstate;
 		gmp_randinit_mt(rstate);
