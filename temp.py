@@ -75,7 +75,7 @@ result = (13**19) % 60
 print(result)
 '''
 
-with open('cpp/quadruplet_search.txt') as f:
+with open('cpp/quadruplet_search_2.txt') as f:
     lines = f.readlines()
 
 # split strings into list of primes
