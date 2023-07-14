@@ -79,8 +79,8 @@ int main(void) {
 		mpz_inits(lower, upper, base, random, NULL);
 
 		mpz_set_ui(base, 10);
-		mpz_pow_ui(lower, base, 10000);
-		mpz_pow_ui(upper, base, 10001);
+		mpz_pow_ui(lower, base, 100000);
+		mpz_pow_ui(upper, base, 100001);
 
 
 		mpz_urandomm(random, rstate, upper);
@@ -90,7 +90,7 @@ int main(void) {
 
 
 		cout << "\n\n\n`````````````````````````````````````````````````````" << endl;
-		cout << "beginning search for quadruplet primes..." << endl;
+		cout << "beginning search for very, very big prime..." << endl;
 		cout << "\n`````````````````````````````````````````````````````" << endl;
 
 		unsigned int counter = 0;
