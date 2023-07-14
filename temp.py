@@ -84,10 +84,16 @@ print(pc.is_Prime(0,
 with open('cpp/quadruplet_search_2.txt') as f:
     lines = f.readlines()
 
+with open('cpp/quadruplet_search.txt') as f2:
+    lines2 = f2.readlines()
+
 # split strings into list of primes
 primelist = []
 for i in range(0, len(lines), 2): 
     primelist.append(int(lines[i]))
+    
+for i in range(0, len(lines2), 2): 
+    primelist.append(int(lines2[i]))
 
 # iterate through each prime stored in the list of primes
 pcounter = 0
