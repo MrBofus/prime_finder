@@ -81,7 +81,7 @@ print(pc.is_Prime(0,
                   8))
 '''
 
-with open('cpp/quadruplet_search.txt') as f:
+with open('cpp/quadruplet_search_2.txt') as f:
     lines = f.readlines()
 
 # split strings into list of primes
