@@ -89,10 +89,10 @@ with open('cpp/quadruplet_search.txt') as f2:
 
 # split strings into list of primes
 primelist = []
-for i in range(9500, len(lines), 2): 
+for i in range(11000, len(lines), 2): 
     primelist.append(int(lines[i]))
     
-for i in range(9500, len(lines2), 2): 
+for i in range(11000, len(lines2), 2): 
     primelist.append(int(lines2[i]))
 
 # iterate through each prime stored in the list of primes
