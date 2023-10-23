@@ -79,8 +79,8 @@ int main(void) {
 		mpz_inits(lower, upper, base, random, NULL);
 
 		mpz_set_ui(base, 10);
-		mpz_pow_ui(lower, base, 20000);
-		mpz_pow_ui(upper, base, 20001);
+		mpz_pow_ui(lower, base, 49999);
+		mpz_pow_ui(upper, base, 50000);
 
 
 		mpz_urandomm(random, rstate, upper);
@@ -88,7 +88,10 @@ int main(void) {
 		mpz_add(lower, random, lower);
 		mpz_add(upper, random, upper);
 
-
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
 		cout << "\n\n\n`````````````````````````````````````````````````````" << endl;
 		cout << "beginning search for very, very big prime..." << endl;
 		cout << "\n`````````````````````````````````````````````````````" << endl;
@@ -106,7 +109,7 @@ int main(void) {
 			// printf("checking new candidate...\n");
 
 			size_t length = mpz_sizeinbase(lower, 10);
-			cout << "\rcandidate #" << counter << " -- " << pcounter << " primes found";// -- (expect 1 prime in every " << length << " candidates)";
+			cout << "\rcandidate #" << counter << " -- " << pcounter << " primes found -- (expect 1 prime in every " << length << " candidates)";
 			cout.flush();
 			// printf("\rcandidate #%d", counter);
 			// printf("candidate is %lu digits\n", length);
