@@ -45,7 +45,7 @@ int main(void) {
 				mpz_pow_ui(result, base, power);
 				mpz_sub_ui(result, result, 1);
 
-				primefile = fopen("prime.txt", "a");
+				primefile = fopen("mersenne_test.txt", "a");
 				fputs("\n", primefile);
 				fprintf(primefile, "%u", power);
 				fputs(" -- ", primefile);
