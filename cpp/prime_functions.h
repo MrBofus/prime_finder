@@ -46,20 +46,20 @@ bool LucasLehmer(unsigned int c){
 
 	// printf("initial s (should be 4): ");
 	// print_gmp(s);
-    printf("\n");
+    	printf("\n");
 	for(int i = 1; i < c-1; i++){
 		if (i%15==0){
 			float percent = 100*i/(c-1);
 			printf("\rvalidating primality...\t%.0f%% complete (%d/%d)", percent, i, (c-1));
-            
+
 		}
         // printf("checking... %d\n", i%15);
-        
-		mpz_mul(s, s, s);
-		mpz_sub_ui(s, s, 2);
 
-		// printf("s^2 - 2 = ");
-		// print_gmp(s);
+	mpz_mul(s, s, s);
+	mpz_sub_ui(s, s, 2);
+
+	// printf("s^2 - 2 = ");
+	// print_gmp(s);
 
 		mpz_mod(s, s, candidate);
 
@@ -190,7 +190,7 @@ bool isPrime_mpz(mpz_t value){
 	// printf("computing mod...");
 
 	mpz_mod_ui(l, value, 10);
-	
+
 	// printf("validating primality...\t%.0f%% complete", 0.0);
 
 	if (mpz_cmp_ui(l, 2) == 0 || mpz_cmp_ui(l, 4) == 0 || mpz_cmp_ui(l, 5) == 0 || mpz_cmp_ui(l, 6) == 0 || mpz_cmp_ui(l, 8) == 0 || mpz_cmp_ui(l, 0) == 0){
@@ -214,10 +214,10 @@ bool isPrime_mpz(mpz_t value){
 	}
 
 	gmp_randstate_t rstate;
-    gmp_randinit_mt(rstate);
+    	gmp_randinit_mt(rstate);
 
 	unsigned long seed;
-    gmp_randseed_ui(rstate, seed);
+    	gmp_randseed_ui(rstate, seed);
 
 	for (int i = 0; i < 8; i++){
 		float percent = 100*i/8;

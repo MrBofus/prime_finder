@@ -68,6 +68,8 @@ int main(void) {
 	}
 
 	else if (mode == 2) {
+		float delta_t = 0;
+		unsigned int val = 0;
 
 		gmp_randstate_t rstate;
 		gmp_randinit_mt(rstate);
@@ -79,9 +81,16 @@ int main(void) {
 		mpz_inits(lower, upper, base, random, NULL);
 
 		mpz_set_ui(base, 10);
-		mpz_pow_ui(lower, base, 49999);
-		mpz_pow_ui(upper, base, 50000);
 
+		cout << "\n\n\n\n" << endl;
+		cout << "beginning random number prime search !! :)" << endl;
+		cout << "number of digits: ";
+		cin >> val;
+
+		// mpz_pow_ui(lower, base, 49999);
+		// mpz_pow_ui(upper, base, 50000);
+		mpz_pow_ui(lower, base, val-1);
+		mpz_pow_ui(upper, base, val);
 
 		mpz_urandomm(random, rstate, upper);
 
@@ -93,8 +102,9 @@ int main(void) {
 		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
 		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
 		cout << "\n\n\n`````````````````````````````````````````````````````" << endl;
-		cout << "beginning search for very, very big prime..." << endl;
+		cout << "beginning search for " << val << " digit prime..." << endl;
 		cout << "\n`````````````````````````````````````````````````````" << endl;
+		cout << "\n\n\n\n" << endl;
 
 		unsigned int counter = 0;
 		unsigned int pcounter = 0;
@@ -109,16 +119,22 @@ int main(void) {
 			// printf("checking new candidate...\n");
 
 			size_t length = mpz_sizeinbase(lower, 10);
-			cout << "\rcandidate #" << counter << " -- " << pcounter << " primes found -- (expect 1 prime in every " << length << " candidates)";
+			// cout << "\rcandidate #" << counter << " -- " << pcounter << " primes found -- (expect 1 prime in every " << length << " candidates)"; // -- takes " << delta_t << "s to validate";
+
+			cout << "\n\n\n\n\n````````````````````````````````";
+			cout << "```````````````````````````````" << endl;
+			cout << "\tanalyzing candidate #" << counter << endl;
+			cout << "\t\tcandidate has " << length << " digits" << endl;
 			cout.flush();
 			// printf("\rcandidate #%d", counter);
 			// printf("candidate is %lu digits\n", length);
 
-			time_t t_to_start = time(NULL);
+			clock_t t_to_start = clock();
 			if (isPrime_mpz_fast(lower, rstate)){
 				pcounter++;
+				cout << "\tcandidate was prime (total of " << pcounter << " found)" << endl;
 				// printf("\ncandidate was prime\n");
-				primefile = fopen("twin_prime_candidates.txt", "a");
+				primefile = fopen("testing.txt", "a");
 				fputs("\n", primefile);
 				mpz_out_str(primefile, 10, lower);
 				fputs("\n", primefile);
@@ -126,14 +142,18 @@ int main(void) {
 			}
 			else {
 				// printf("\ncandidate was not prime\n");
+				cout << "\tcandidate was not prime (total of " << pcounter << " found)" << endl;
 			}
-			time_t t_to_end = time(NULL);
+			clock_t t_to_end = clock();
 
-			// printf("(took %lds to validate)\n", t_to_end - t_to_start);
+			// printf("\t(took %ldms to validate)\n", t_to_end - t_to_start);
+			delta_t = t_to_end - t_to_start;
+			delta_t = delta_t/1000000;
+			cout << "\t(took " << delta_t << "s to validate)" << endl;
 
 			mpz_add_ui(lower, lower, 1);
 			int check = mpz_cmp(lower, upper);
-			
+
 			if (check > 0){ break; }
 		}
 
