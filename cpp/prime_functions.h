@@ -10,7 +10,25 @@ inline void mpz_rshift(mpz_t rop, mpz_t op1, mp_bitcnt_t op2) {
 	mpz_fdiv_q_2exp(rop, op1, op2);
 }
 
+/****************************************************************************************************************************/
 
+bool checkLastDigit(mpz_t value){
+
+    mpz_t l;
+    mpz_init(l);
+
+    mpz_mod_ui(l, value, 10);
+
+    if (mpz_cmp_ui(l, 2) == 0 || mpz_cmp_ui(l, 4) == 0 || 
+        mpz_cmp_ui(l, 5) == 0 || mpz_cmp_ui(l, 6) == 0 || 
+        mpz_cmp_ui(l, 8) == 0 || mpz_cmp_ui(l, 0) == 0){
+        return true;
+    }
+
+    mpz_clear(l);
+    return false;
+
+}
 
 /****************************************************************************************************************************/
 
@@ -33,33 +51,42 @@ bool LucasLehmer(unsigned int c){
 	mpz_set_ui(candidate, 0);
 	mpz_set_str(base, "2", 10);
 
-	// printf("base (should be 2): ");
-	// print_gmp(base);
+	printf("  |---- base (should be 2): ");
+	print_gmp(base);
 
 	mpz_pow_ui(candidate, base, c);
 	mpz_sub_ui(candidate, candidate, 1);
 
-	// printf("candidate (should be big number): ");
-	// print_gmp(candidate);
-
 	mpz_set_ui(s, 4);
 
-	// printf("initial s (should be 4): ");
-	// print_gmp(s);
-    	printf("\n");
+	printf("  |---- initial s (should be 4): ");
+	print_gmp(s);
+
+	size_t length = mpz_sizeinbase(candidate, 10);
+	cout << "  |---- candidate is " << length << " digits\n";
+	printf("\n");
+
+	if (checkLastDigit(candidate)){
+		cout << "\rvalidating primality...\t100% complete (0/0)";
+		cout.flush();
+		mpz_clears(candidate, base, s, zero, NULL);
+		return false;
+	}
+	
 	for(int i = 1; i < c-1; i++){
 		if (i%15==0){
 			float percent = 100*i/(c-1);
-			printf("\rvalidating primality...\t%.0f%% complete (%d/%d)", percent, i, (c-1));
-
+			// printf("\rvalidating primality...\t%.0f%% complete (%d/%d)", percent, i, (c-1));
+			cout << "\rvalidating primality...\t" << percent << "% complete (" << i << "/" << c-1 << ")";
+			cout.flush();
 		}
         // printf("checking... %d\n", i%15);
 
-	mpz_mul(s, s, s);
-	mpz_sub_ui(s, s, 2);
+		mpz_mul(s, s, s);
+		mpz_sub_ui(s, s, 2);
 
-	// printf("s^2 - 2 = ");
-	// print_gmp(s);
+		// printf("s^2 - 2 = ");
+		// print_gmp(s);
 
 		mpz_mod(s, s, candidate);
 
