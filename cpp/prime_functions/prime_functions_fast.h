@@ -104,20 +104,21 @@ bool isPrime_mpz_fast(mpz_t value, gmp_randstate_t rstate){
 		cout << "\r\t\tvalidating primality...\t" << percent << "% complete";
 		cout.flush();
 
-        	mpz_urandomm(a, rstate, value);
-        	mpz_powm(t1, a, d, value);
+        mpz_urandomm(a, rstate, value);
+        if (mpz_cmp_ui(a, 0) == 0) { mpz_set_ui(a, 1); }
+        mpz_powm(t1, a, d, value);
 
-        	if (trial_composite_fast(t1, t2, t3,
-                                nprime, two,
-                                a, d, value, s)){
+        if (trial_composite_fast(t1, t2, t3,
+                            nprime, two,
+                            a, d, value, s)){
 
             cout << "\r\t\tvalidating primality...\t100% complete";
             cout << endl;
-			cout.flush();
+            cout.flush();
 
-			mpz_clears(a, d, dprime, s, NULL);
-        	mpz_clears(t1, t2, t3, nprime, two, NULL);
-			return false;
+            mpz_clears(a, d, dprime, s, NULL);
+            mpz_clears(t1, t2, t3, nprime, two, NULL);
+            return false;
 		}
 	}
 

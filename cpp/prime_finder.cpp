@@ -124,8 +124,8 @@ int main(void) {
 		unsigned int counter = 0;
 		unsigned int pcounter = 0;
 		while (true){
-			counter++;
 
+			counter++;
 			while(checkLastDigit(lower)){
 				mpz_add_ui(lower, lower, 1);
 			}
@@ -142,6 +142,7 @@ int main(void) {
 			printf("            **Random Miller-Rabin Search**\n");
 			cout << "\n````````````````````````````````";
 			cout << "``````````````````````````" << endl;
+			// print_gmp(lower);
 			cout << "\tanalyzing candidate #" << counter << endl;
 			cout << "\t | --- candidate has " << length << " digits" << endl;
 			cout << "\t | --- (" << chance << "% chance of being prime)" << endl;
@@ -150,17 +151,22 @@ int main(void) {
 			clock_t t_to_start = clock();
 			if (isPrime_mpz_fast(lower, rstate)){
 				pcounter++;
+
 				cout << "\tcandidate was prime (total of " << pcounter << " found)" << endl;
 				// printf("\ncandidate was prime\n");
+
 				primefile = fopen("text_files/test.txt", "a");
 				fputs("\n", primefile);
 				mpz_out_str(primefile, 10, lower);
 				fputs("\n", primefile);
+
 				fclose(primefile);
+
 			}
 			else {
 				cout << "\tcandidate was not prime (total of " << pcounter << " found)" << endl;
 			}
+			
 			clock_t t_to_end = clock();
 
 			delta_t = t_to_end - t_to_start;
