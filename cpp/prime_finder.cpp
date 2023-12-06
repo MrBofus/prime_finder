@@ -1,6 +1,7 @@
 // g++ -o prime_finder prime_finder.cpp -lgmp
 
 #include <iostream>
+#include <iomanip>
 #include <math.h>
 #include <cstdlib>
 #include <cmath>
@@ -133,6 +134,7 @@ int main(void) {
 			// printf("checking new candidate...\n");
 
 			size_t length = mpz_sizeinbase(lower, 10);
+			float chance = 100.00/length;
 			// cout << "\rcandidate #" << counter << " -- " << pcounter << " primes found -- (expect 1 prime in every " << length << " candidates)"; // -- takes " << delta_t << "s to validate";
 
 			cout << "\n\n\n\n" << endl;
@@ -141,10 +143,9 @@ int main(void) {
 			cout << "\n````````````````````````````````";
 			cout << "``````````````````````````" << endl;
 			cout << "\tanalyzing candidate #" << counter << endl;
-			cout << "\t\tcandidate has " << length << " digits" << endl;
+			cout << "\t | --- candidate has " << length << " digits" << endl;
+			cout << "\t | --- (" << chance << "% chance of being prime)" << endl;
 			cout.flush();
-			// printf("\rcandidate #%d", counter);
-			// printf("candidate is %lu digits\n", length);
 
 			clock_t t_to_start = clock();
 			if (isPrime_mpz_fast(lower, rstate)){
@@ -158,12 +159,10 @@ int main(void) {
 				fclose(primefile);
 			}
 			else {
-				// printf("\ncandidate was not prime\n");
 				cout << "\tcandidate was not prime (total of " << pcounter << " found)" << endl;
 			}
 			clock_t t_to_end = clock();
 
-			// printf("\t(took %ldms to validate)\n", t_to_end - t_to_start);
 			delta_t = t_to_end - t_to_start;
 			delta_t = delta_t/1000000;
 			cout << "\t(took " << delta_t << "s to validate)" << endl;
@@ -177,5 +176,6 @@ int main(void) {
 		gmp_randclear(rstate);
 		mpz_clears(lower, upper, base, random, NULL);
 	}
+	
 	return 0;
 }
