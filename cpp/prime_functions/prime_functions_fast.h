@@ -5,6 +5,7 @@
 //    prime_functions.h  --  library importing gmp and gmpxx
 
 #include "prime_functions.h"
+#include "prime_functions_art.h"
 
 /****************************************************************************************************************************/
 // function: trial composite

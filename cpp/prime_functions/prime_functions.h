@@ -51,7 +51,7 @@ bool LucasLehmer(unsigned int c){
 	mpz_set_ui(candidate, 0);
 	mpz_set_str(base, "2", 10);
 
-	printf("  |---- base (should be 2): ");
+	printf("  |---- base\t\t(should be 2): ");
 	print_gmp(base);
 
 	mpz_pow_ui(candidate, base, c);
@@ -59,7 +59,7 @@ bool LucasLehmer(unsigned int c){
 
 	mpz_set_ui(s, 4);
 
-	printf("  |---- initial s (should be 4): ");
+	printf("  |---- initial s\t(should be 4): ");
 	print_gmp(s);
 
 	size_t length = mpz_sizeinbase(candidate, 10);

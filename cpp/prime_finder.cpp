@@ -4,7 +4,7 @@
 #include <math.h>
 #include <cstdlib>
 #include <cmath>
-#include "prime_functions_fast.h"
+#include "prime_functions/prime_functions_fast.h"
 
 int mode = 1;
 
@@ -32,41 +32,10 @@ int main(void) {
 			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-			
-			std::cout << R"( 
-   //////////////////////////////////////////////////
-  //██████╗/██████╗/██╗███╗///███╗███████╗///////////
- ///██╔══██╗██╔══██╗██║████╗/████║██╔════╝///////////
- ///██████╔╝██████╔╝██║██╔████╔██║█████╗/////////////
- ///██╔═══╝/██╔══██╗██║██║╚██╔╝██║██╔══╝/////////////
- ///██║/////██║//██║██║██║/╚═╝/██║███████╗///////////
- ///╚═╝/////╚═╝//╚═╝╚═╝╚═╝/////╚═╝╚══════╝///////////
- ////////////////////////////////////////////////////
- ///███████╗██╗███╗///██╗██████╗/███████╗██████╗/////
- ///██╔════╝██║████╗//██║██╔══██╗██╔════╝██╔══██╗////
- ///█████╗//██║██╔██╗/██║██║//██║█████╗//██████╔╝////
- ///██╔══╝//██║██║╚██╗██║██║//██║██╔══╝//██╔══██╗////
- ///██║/////██║██║/╚████║██████╔╝███████╗██║//██║///
- ///╚═╝/////╚═╝╚═╝//╚═══╝╚═════╝/╚══════╝╚═╝//╚═╝//
- /////////////////////////////////////////////////
-			)" << '\n';
-			/*
-			std::cout << R"(
-                ///////////////////████
-                ///██████╗/////////████
-                ///██╔══██╗////////////
-                ///██████╔╝////////////
-                ///██╔═══╝//███████╗///
-                ///██║//////██╔════╝///
-                ///╚═╝//////█████╗/////
-                ////////////██╔══╝/////
-                ██//////////██║////////
-                ██//////////╚═╝////////
-                ██████/////////////////
-			)" << '\n';
-			*/
 
-			printf("              **Lucas-Lehmer Variant**               \n");
+			std::cout << full_logo << '\n';
+
+			printf("              **Lucas-Lehmer Variant**\n");
 			printf("\n\n\n`````````````````````````````````````````````````````\n");
 			printf("finding new candidate...\n");
 			while (power < upper){
@@ -90,7 +59,7 @@ int main(void) {
 				mpz_pow_ui(result, base, power);
 				mpz_sub_ui(result, result, 1);
 
-				primefile = fopen("mersenne_test.txt", "a");
+				primefile = fopen("text_files/test.txt", "a");
 				fputs("\n", primefile);
 				fprintf(primefile, "%u", power);
 				fputs(" -- ", primefile);
@@ -166,8 +135,11 @@ int main(void) {
 			size_t length = mpz_sizeinbase(lower, 10);
 			// cout << "\rcandidate #" << counter << " -- " << pcounter << " primes found -- (expect 1 prime in every " << length << " candidates)"; // -- takes " << delta_t << "s to validate";
 
-			cout << "\n\n\n\n\n````````````````````````````````";
-			cout << "```````````````````````````````" << endl;
+			cout << "\n\n\n\n" << endl;
+			std::cout << truncated_logo << '\n';
+			printf("            **Random Miller-Rabin Search**\n");
+			cout << "\n````````````````````````````````";
+			cout << "``````````````````````````" << endl;
 			cout << "\tanalyzing candidate #" << counter << endl;
 			cout << "\t\tcandidate has " << length << " digits" << endl;
 			cout.flush();
@@ -179,7 +151,7 @@ int main(void) {
 				pcounter++;
 				cout << "\tcandidate was prime (total of " << pcounter << " found)" << endl;
 				// printf("\ncandidate was prime\n");
-				primefile = fopen("testing.txt", "a");
+				primefile = fopen("text_files/test.txt", "a");
 				fputs("\n", primefile);
 				mpz_out_str(primefile, 10, lower);
 				fputs("\n", primefile);
