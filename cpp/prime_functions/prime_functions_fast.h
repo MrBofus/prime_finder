@@ -24,16 +24,19 @@ bool trial_composite_fast(mpz_t t1, mpz_t t2, mpz_t t3,
 	}
 
     while (mpz_cmp(iterator, s) < 0){
+
         mpz_powm(t2, two, iterator, n);
         mpz_mul(t2, t2, d);
-
         mpz_powm(t3, a, t2, n);
+
         if (mpz_cmp(t3, nprime) == 0){
+            mpz_clear(iterator);
             return false;
         }
 
 		mpz_add_ui(iterator, iterator, 1);
     }
+    mpz_clear(iterator);
     return true;
 }
 

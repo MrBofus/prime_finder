@@ -22,6 +22,8 @@ bool checkLastDigit(mpz_t value){
     if (mpz_cmp_ui(l, 2) == 0 || mpz_cmp_ui(l, 4) == 0 || 
         mpz_cmp_ui(l, 5) == 0 || mpz_cmp_ui(l, 6) == 0 || 
         mpz_cmp_ui(l, 8) == 0 || mpz_cmp_ui(l, 0) == 0){
+			
+		mpz_clear(l);
         return true;
     }
 

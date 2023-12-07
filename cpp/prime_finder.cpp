@@ -26,6 +26,7 @@ int main(void) {
 	cout << "mode: ";
 	cin >> mode;
 
+	// ``````````````````````````````````````````````````````````````````````````````````````` //
 	// Lucas-Lehmer search mode:
 	if (mode == 1) {
 		
@@ -110,6 +111,7 @@ int main(void) {
 		}
 	}
 
+	// ``````````````````````````````````````````````````````````````````````````````````````` //
 	// miller-rabin random search mode:
 	else if (mode == 2) {
 
@@ -235,6 +237,7 @@ int main(void) {
 		mpz_clears(lower, upper, base, random, NULL);
 	}
 	
+	// ``````````````````````````````````````````````````````````````````````````````````````` //
 	// individual value mode:
 	else if (mode == 3){
 
