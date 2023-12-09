@@ -118,6 +118,7 @@ int main(void) {
 		// initialize time counter and number of digits
 		float delta_t = 0;
 		unsigned int val = 0;
+		char* mpz_seed_str;
 
 		// define and initialize random number generator
 		gmp_randstate_t rstate;
@@ -150,6 +151,8 @@ int main(void) {
 		// add random number to values being checked
 		mpz_add(lower, random, lower);
 		mpz_add(upper, random, upper);
+		
+		//`````````````````````````````````````````````````````//
 
 		// clear screen and display info
 		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
@@ -187,6 +190,8 @@ int main(void) {
 			cout << "\n````````````````````````````````";
 			cout << "``````````````````````````" << endl;
 			// print_gmp(lower);
+			mpz_seed_str = return_seed(lower, 32);
+			cout << "\tseed: " << mpz_seed_str << endl;
 			cout << "\tanalyzing candidate #" << counter << endl;
 			cout << "\t | --- candidate has " << length << " digits" << endl;
 			cout << "\t | --- (" << chance << "% chance of being prime)" << endl;
