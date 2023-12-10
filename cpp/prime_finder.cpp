@@ -329,7 +329,8 @@ int main(void) {
 		mpz_clears(value, random, NULL);
 	}
 
-
+	// ``````````````````````````````````````````````````````````````````````````````````````` //
+	// mode 4
 	else if (mode == 4) {
 		
 		// initialize time counter and number of digits
