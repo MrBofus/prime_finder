@@ -7,6 +7,7 @@
 #include <math.h>
 #include <cstdlib>
 #include <cmath>
+#include <cstdlib>
 #include "prime_functions/prime_functions_fast.h"
 
 // initialize mode
@@ -125,7 +126,7 @@ int main(void) {
 		gmp_randinit_mt(rstate);
 
 		// define and initialize random seed for rng
-		unsigned long seed;
+		unsigned long seed = time(0);
 		gmp_randseed_ui(rstate, seed);
 
 		// define and initialize the mpz numbers to zero
@@ -258,7 +259,8 @@ int main(void) {
 		gmp_randinit_mt(rstate);
 
 		// define and initialize random seed for rng
-		unsigned long seed;
+		srand((unsigned int)time(NULL));
+		unsigned long seed = rand()%100000000000;
 		gmp_randseed_ui(rstate, seed);
 
 		// define and initialize the mpz numbers to zero
@@ -271,6 +273,7 @@ int main(void) {
 		// display info + ask user how many digits for prime number
 		cout << "\n\n\n\n" << endl;
 		cout << "beginning random number prime search !! :)" << endl;
+		cout << "seed: " << seed << endl;
 		cout << "number of digits: ";
 		cin >> val;
 
