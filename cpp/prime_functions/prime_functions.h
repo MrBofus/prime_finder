@@ -33,6 +33,9 @@ bool checkLastDigit(mpz_t value){
 }
 
 
+/****************************************************************************************************************************/
+
+
 char* return_seed(mpz_t value, unsigned int pl){
 	char* mpz_seed_str;
 
