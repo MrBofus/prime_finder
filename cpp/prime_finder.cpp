@@ -184,16 +184,20 @@ int main(void) {
 			float chance = 100.00/length;
 			
 			// show logo and info to user
-			cout << "\n\n\n\n" << endl;
-			std::cout << truncated_logo << '\n';
+			cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+			std::cout << full_logo << '\n';
 			printf("            **Random Miller-Rabin Search**\n");
 			cout << "\n````````````````````````````````";
 			cout << "``````````````````````````" << endl;
+			mpz_seed_str = return_seed(lower, 1000);
+			cout << "seed: " << mpz_seed_str << endl;
+			cout << "\n````````````````````````````````";
+			cout << "``````````````````````````" << endl;
 			// print_gmp(lower);
-			mpz_seed_str = return_seed(lower, 32);
-			cout << "\tseed: " << mpz_seed_str << endl;
 			cout << "\tanalyzing candidate #" << counter << endl;
 			cout << "\t | --- candidate has " << length << " digits" << endl;
+			cout << "\t | --- prev. candidate took " << delta_t << "s to validate" << endl;
+			cout << "\t | --- total of " << pcounter << " found" << endl;
 			cout << "\t | --- (" << chance << "% chance of being prime)" << endl;
 			cout.flush();
 
@@ -242,6 +246,111 @@ int main(void) {
 		mpz_clears(lower, upper, base, random, NULL);
 	}
 	
+	else if (mode == 4) {
+		
+		// initialize time counter and number of digits
+		float delta_t = 0;
+		unsigned int val = 0;
+		char* mpz_seed_str;
+
+		// define and initialize random number generator
+		gmp_randstate_t rstate;
+		gmp_randinit_mt(rstate);
+
+		// define and initialize random seed for rng
+		unsigned long seed;
+		gmp_randseed_ui(rstate, seed);
+
+		// define and initialize the mpz numbers to zero
+		mpz_t lower, upper, base, random;
+		mpz_inits(lower, upper, base, random, NULL);
+
+		// intialize 'base' to 10
+		mpz_set_ui(base, 10);
+
+		// display info + ask user how many digits for prime number
+		cout << "\n\n\n\n" << endl;
+		cout << "beginning random number prime search !! :)" << endl;
+		cout << "number of digits: ";
+		cin >> val;
+
+		// define lower and upper bound values given number of digits
+		mpz_pow_ui(lower, base, val-1);
+		mpz_pow_ui(upper, base, val);
+
+		// generate random number in range
+		mpz_urandomm(random, rstate, upper);
+
+		// add random number to values being checked
+		mpz_add(lower, random, lower);
+		mpz_add(upper, random, upper);
+		
+		//`````````````````````````````````````````````````````//
+
+		// clear screen and display info
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+		mpz_seed_str = return_seed(lower, 32);
+		cout << "seed: " << mpz_seed_str << endl;
+		cout << "\n\n\n`````````````````````````````````````````````````````" << endl;
+		cout << "beginning search for " << val << " digit prime..." << endl;
+		cout << "\n`````````````````````````````````````````````````````" << endl;
+		cout << "\n\n\n\n" << endl;
+
+		// initialize counter and prime number counter
+		unsigned int counter = 0;
+		unsigned int pcounter = 0;
+
+		// begin miller-rabin random search
+		while (true){
+
+			// iterate counter
+			counter++;
+
+			// check the last digit of number to see if it's worth checking
+			while(checkLastDigit(lower)){
+				mpz_add_ui(lower, lower, 1);
+			}
+
+			// determine number of digits in candidate and chance of being prime
+			size_t length = mpz_sizeinbase(lower, 10);
+			float chance = 100.00/length;
+			
+			cout << "\r  analyzing candidate #" << counter;
+			cout << " --- total of " << pcounter << " found";
+			cout.flush();
+
+			// start timer and check if value is prime given value and 
+			// rng state
+			if (isPrime_mpz_fast(lower, rstate)){
+
+				// if it is prime, increment the prime counter
+				pcounter++;
+				// write prime to text file
+				primefile = fopen("text_files/test.txt", "a");
+				fputs("\n", primefile);
+				mpz_out_str(primefile, 10, lower);
+				fputs("\n", primefile);
+
+				fclose(primefile);
+
+			}
+			else {}
+
+			// increment candidate by one
+			mpz_add_ui(lower, lower, 1);
+
+			// if all values have been checked, break
+			int check = mpz_cmp(lower, upper);
+			if (check > 0){ break; }
+		}
+
+		// clear rng and mpz numbers
+		gmp_randclear(rstate);
+		mpz_clears(lower, upper, base, random, NULL);
+	}
 	// ``````````````````````````````````````````````````````````````````````````````````````` //
 	// individual value mode:
 	else if (mode == 3){

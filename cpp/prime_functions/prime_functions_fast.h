@@ -77,13 +77,13 @@ bool isPrime_mpz_fast(mpz_t value, gmp_randstate_t rstate){
     mpz_set_ui(two, 2);
     mpz_sub_ui(nprime, value, 1);
 
-    cout << "\t\tvalidating primality...\t0% complete";
-	cout.flush();
+    // cout << "\t\tvalidating primality...\t0% complete";
+	// cout.flush();
 
 	if (checkLastDigit(value)){
-		cout << "\r\t\tvalidating primality...\t100% complete";
-		cout << endl;
-		cout.flush();
+		// cout << "\r\t\tvalidating primality...\t100% complete";
+		// cout << endl;
+		// cout.flush();
 
         mpz_clears(a, d, dprime, s, NULL);
         mpz_clears(t1, t2, t3, nprime, two, NULL);
@@ -103,9 +103,9 @@ bool isPrime_mpz_fast(mpz_t value, gmp_randstate_t rstate){
 	}
 
 	for (int i = 0; i < 12; i++){
-		float percent = 100*i/12;
-		cout << "\r\t\tvalidating primality...\t" << percent << "% complete";
-		cout.flush();
+		// float percent = 100*i/12;
+		// cout << "\r\t\tvalidating primality...\t" << percent << "% complete";
+		// cout.flush();
 
         mpz_urandomm(a, rstate, value);
         if (mpz_cmp_ui(a, 0) == 0) { mpz_set_ui(a, 1); }
@@ -115,9 +115,9 @@ bool isPrime_mpz_fast(mpz_t value, gmp_randstate_t rstate){
                             nprime, two,
                             a, d, value, s)){
 
-            cout << "\r\t\tvalidating primality...\t100% complete";
-            cout << endl;
-            cout.flush();
+            // cout << "\r\t\tvalidating primality...\t100% complete";
+            // cout << endl;
+            // cout.flush();
 
             mpz_clears(a, d, dprime, s, NULL);
             mpz_clears(t1, t2, t3, nprime, two, NULL);
@@ -125,9 +125,9 @@ bool isPrime_mpz_fast(mpz_t value, gmp_randstate_t rstate){
 		}
 	}
 
-    cout << "\r\t\tvalidating primality...\t100% complete";
-    cout << endl;
-	cout.flush();
+    // cout << "\r\t\tvalidating primality...\t100% complete";
+    // cout << endl;
+	// cout.flush();
 
 	mpz_clears(a, d, dprime, s, NULL);
    	mpz_clears(t1, t2, t3, nprime, two, NULL);

@@ -44,7 +44,7 @@ char* return_seed(mpz_t value, unsigned int pl){
 	
 	mpz_mod(mpz_seed, value, mpz_seed_key);
 	
-	mpz_seed_str = mpz_get_str(NULL, 10, mpz_seed);
+	mpz_seed_str = mpz_get_str(NULL, 62, mpz_seed);
 	
 	mpz_clears(mpz_seed, mpz_seed_key, NULL);
 	return mpz_seed_str;
