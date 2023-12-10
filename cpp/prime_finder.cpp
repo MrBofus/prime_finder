@@ -112,6 +112,7 @@ int main(void) {
 		}
 	}
 
+
 	// ``````````````````````````````````````````````````````````````````````````````````````` //
 	// miller-rabin random search mode:
 	else if (mode == 2) {
@@ -247,6 +248,88 @@ int main(void) {
 		mpz_clears(lower, upper, base, random, NULL);
 	}
 	
+
+	// ``````````````````````````````````````````````````````````````````````````````````````` //
+	// individual value mode:
+	else if (mode == 3){
+
+		// initialize time counter
+		float delta_t = 0;
+
+		// define and initialize random number generator
+		gmp_randstate_t rstate;
+		gmp_randinit_mt(rstate);
+
+		// define and initialize random seed for rng
+		unsigned long seed;
+		gmp_randseed_ui(rstate, seed);
+
+		// define and initialize the mpz numbers to zero
+		mpz_t value, random;
+		mpz_inits(value, random, NULL);
+
+		// print pretty logo and request a number to validate
+		// primality
+		cout << "\n\n\n\n" << endl;
+		cout << full_logo << "\n\n\n";
+		cout << "is your value prime?" << endl;
+		cout << "enter a value: ";
+
+		// define a string and read it from the line
+		std::string val;
+		cin >> val;
+
+		// determine length of string + push it into 
+		// a char* array for mpz
+		const int strlength = val.length(); 
+		char* char_array = new char[strlength + 1];
+		strcpy(char_array, val.c_str()); 
+
+		// set the mpz number to the char array, and tell
+		// it base 10
+		mpz_set_str(value, char_array, 10);
+
+		// inform user progress was made
+		cout << "\n\n\n`````````````````````````````````````````````````````" << endl;
+		cout << "determining primality..." << endl;
+		cout << "\n`````````````````````````````````````````````````````" << endl;
+
+		// determine information about the number and show it before validating
+		size_t length = mpz_sizeinbase(value, 10);
+		float chance = 100.00/length;
+		cout << "\t | --- candidate has " << length << " digits" << endl;
+		cout << "\t | --- (" << chance << "% chance of being prime)" << endl;
+
+		// flush cout to make it print, sometimes it waits for later to print it
+		cout.flush();
+
+		// start the clock
+		clock_t t_to_start = clock();
+
+		// determine if the value is prime given the rng
+		if (isPrime_mpz_fast(value, rstate)){
+			// if it's prime let the user know
+			cout << "\tvalue is prime" << endl;
+		}
+		else {
+			// if it's not prime let the user know
+			cout << "\tvalue is not prime" << endl;
+		}
+
+		// stop the clock
+		clock_t t_to_end = clock();
+
+		// determine the time it took to validate primality + let user know
+		delta_t = t_to_end - t_to_start;
+		delta_t = delta_t/1000000;
+		cout << "\t(took " << delta_t << "s to validate)\n\n" << endl;
+
+		// clear the rng and the mpz numbers
+		gmp_randclear(rstate);
+		mpz_clears(value, random, NULL);
+	}
+
+
 	else if (mode == 4) {
 		
 		// initialize time counter and number of digits
@@ -353,85 +436,6 @@ int main(void) {
 		// clear rng and mpz numbers
 		gmp_randclear(rstate);
 		mpz_clears(lower, upper, base, random, NULL);
-	}
-	// ``````````````````````````````````````````````````````````````````````````````````````` //
-	// individual value mode:
-	else if (mode == 3){
-
-		// initialize time counter
-		float delta_t = 0;
-
-		// define and initialize random number generator
-		gmp_randstate_t rstate;
-		gmp_randinit_mt(rstate);
-
-		// define and initialize random seed for rng
-		unsigned long seed;
-		gmp_randseed_ui(rstate, seed);
-
-		// define and initialize the mpz numbers to zero
-		mpz_t value, random;
-		mpz_inits(value, random, NULL);
-
-		// print pretty logo and request a number to validate
-		// primality
-		cout << "\n\n\n\n" << endl;
-		cout << full_logo << "\n\n\n";
-		cout << "is your value prime?" << endl;
-		cout << "enter a value: ";
-
-		// define a string and read it from the line
-		std::string val;
-		cin >> val;
-
-		// determine length of string + push it into 
-		// a char* array for mpz
-		const int strlength = val.length(); 
-		char* char_array = new char[strlength + 1];
-		strcpy(char_array, val.c_str()); 
-
-		// set the mpz number to the char array, and tell
-		// it base 10
-		mpz_set_str(value, char_array, 10);
-
-		// inform user progress was made
-		cout << "\n\n\n`````````````````````````````````````````````````````" << endl;
-		cout << "determining primality..." << endl;
-		cout << "\n`````````````````````````````````````````````````````" << endl;
-
-		// determine information about the number and show it before validating
-		size_t length = mpz_sizeinbase(value, 10);
-		float chance = 100.00/length;
-		cout << "\t | --- candidate has " << length << " digits" << endl;
-		cout << "\t | --- (" << chance << "% chance of being prime)" << endl;
-
-		// flush cout to make it print, sometimes it waits for later to print it
-		cout.flush();
-
-		// start the clock
-		clock_t t_to_start = clock();
-
-		// determine if the value is prime given the rng
-		if (isPrime_mpz_fast(value, rstate)){
-			// if it's prime let the user know
-			cout << "\tvalue is prime" << endl;
-		}
-		else {
-			// if it's not prime let the user know
-			cout << "\tvalue is not prime" << endl;
-		}
-
-		// stop the clock
-		clock_t t_to_end = clock();
-
-		// determine the time it took to validate primality + let user know
-		delta_t = t_to_end - t_to_start;
-		delta_t = delta_t/1000000;
-		cout << "\t(took " << delta_t << "s to validate)\n\n" << endl;
-
-		// clear the rng and the mpz numbers
-		gmp_randclear(rstate);
-		mpz_clears(value, random, NULL);
 	}
 
 	return 0;
