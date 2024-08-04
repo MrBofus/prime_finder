@@ -2,7 +2,6 @@
 // g++ -o prime_finder prime_finder.cpp -lgmp
 
 // import libraries
-#include <iostream>
 #include <iomanip>
 #include <math.h>
 #include <cstdlib>
@@ -187,11 +186,13 @@ int main(void) {
 			
 			// show logo and info to user
 			cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+			
+			/*
 			std::cout << full_logo << '\n';
 			printf("            **Random Miller-Rabin Search**\n");
 			cout << "\n````````````````````````````````";
 			cout << "``````````````````````````" << endl;
-			mpz_seed_str = return_seed(lower, 1000);
+			mpz_seed_str = return_seed(lower, 64);
 			cout << "seed: " << mpz_seed_str << endl;
 			cout << "\n````````````````````````````````";
 			cout << "``````````````````````````" << endl;
@@ -202,6 +203,9 @@ int main(void) {
 			cout << "\t | --- total of " << pcounter << " found" << endl;
 			cout << "\t | --- (" << chance << "% chance of being prime)" << endl;
 			cout.flush();
+			*/
+
+			logoizer(return_seed(lower, 64), counter, length, delta_t, pcounter, chance);
 
 			// start timer and check if value is prime given value and 
 			// rng state
