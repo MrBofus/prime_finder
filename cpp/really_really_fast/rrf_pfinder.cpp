@@ -58,7 +58,7 @@ int main(void) {
         if (isPrime_mpz_fast(random, rstate, verbose)) {
             if (verbose){
                 cout << "\ncandidate was prime\n" << endl;
-                cout.flush();
+                cout.flush(); 
             }
             // primefile = fopen("p_out.txt", "a");
             // fputs("\n", primefile);
