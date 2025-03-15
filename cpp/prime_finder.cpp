@@ -1,5 +1,31 @@
-// compile using this:
-// g++ -o prime_finder prime_finder.cpp -lgmp
+/*````````````````````````````````````````````````````````````````````````````````````
+we need gmp.h to make this work !!! :)
+
+`````````````````````````````````````````````````````
+Easy install: 
+
+sudo apt install -y libgmp-dev
+`````````````````````````````````````````````````````
+Performance optimized:
+
+sudo apt update
+sudo apt install -y build-essential m4
+
+wget https://gmplib.org/download/gmp/gmp-6.3.0.tar.xz  # Latest as of 2024
+tar -xf gmp-6.3.0.tar.xz
+cd gmp-6.3.0
+
+CFLAGS="-march=armv8-a+crc -mtune=cortex-a53" \
+CXXFLAGS="-march=armv8-a+crc -mtune=cortex-a53" \
+./configure --enable-cxx --host=aarch64-linux-gnu --build=aarch64-linux-gnu
+
+make -j$(nproc)
+sudo make install
+`````````````````````````````````````````````````````
+
+To compile: g++ -o prime_finder prime_finder.cpp -lgmp
+````````````````````````````````````````````````````````````````````````````````````*/
+
 
 // import libraries
 #include <iostream>
