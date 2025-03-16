@@ -30,6 +30,8 @@ To compile: g++ -o prime_finder prime_finder.cpp -lgmp
 // import libraries
 #include <iostream>
 #include <iomanip>
+#include <fstream>
+#include <sstream>
 #include <math.h>
 #include <cstdlib>
 #include <cmath>
@@ -42,14 +44,31 @@ int mode = 1;
 // initialize file to write primes to
 FILE* primefile;
 
+// buffer to hold primes before writing them to a file
+const size_t BUFFER_SIZE = 1000;
+ostringstream prime_buffer;
+
+char* str_lower = NULL;
+const char* file = "rpi/twin_prime_candidates.txt";
+
+// function to write primes to file
+void write_primes_to_file(ostringstream& buffer, const char* filename){
+	ofstream outfile(filename, ios::app);
+	outfile << buffer.str();
+	outfile.close();
+	buffer.str("");
+	buffer.clear();
+}
+
 // main loop
 int main(void) {
 
 	// present user with menu 
 	cout << "choose a mode: \n\t(1) - for lucas lehmer";
 	cout << "\n\t(2) - for random miller-rabin";
-	cout << "\n\t(3) - specific value primality test\n\n";
-	cout << "remember to have fun out there !! :)\n";
+	cout << "\n\t(3) - specific value primality test";
+	cout << "\n\t(4) - for random miller-rabin + minimal UI";
+	cout << "\n\nremember to have fun out there !! :)\n";
 	cout << "mode: ";
 	cin >> mode;
 
@@ -416,6 +435,7 @@ int main(void) {
 		// initialize counter and prime number counter
 		unsigned int counter = 0;
 		unsigned int pcounter = 0;
+		unsigned int pcounter_check = 0;
 
 		// begin miller-rabin random search
 		while (true){
@@ -434,24 +454,24 @@ int main(void) {
 			
 			cout << "\r  analyzing candidate #" << counter;
 			cout << " --- total of " << pcounter << " found";
-			cout.flush();
+			// cout.flush();
 
-			// start timer and check if value is prime given value and 
-			// rng state
+			// check if value is prime given value and rng state
 			if (isPrime_mpz_fast(lower, rstate)){
 
 				// if it is prime, increment the prime counter
 				pcounter++;
+				pcounter_check++;
+
 				// write prime to text file
-				primefile = fopen("text_files/test.txt", "a");
-				fputs("\n", primefile);
-				mpz_out_str(primefile, 10, lower);
-				fputs("\n", primefile);
-
-				fclose(primefile);
-
+				str_lower = mpz_get_str(NULL, 10, lower);
+				prime_buffer << "\n" << str_lower << "\n";
+				if (pcounter_check >= BUFFER_SIZE){
+					write_primes_to_file(prime_buffer, file);
+					pcounter_check = 0;
+				}
 			}
-			else {}
+			else{}
 
 			// increment candidate by one
 			mpz_add_ui(lower, lower, 1);
